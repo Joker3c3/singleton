@@ -1,0 +1,317 @@
+fileFormatVersion: 2
+guid: 66734105f33df2d4e8c6fba5c1eb459f
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Asoap-haircare2
+    second: {fileID: 2100000, guid: 34c0f11f32b3bf64fbdec0087f9df552, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Asoap-haircare7
+    second: {fileID: 2100000, guid: 7736fb468520cbb4a9a75e2e3f6b5f55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Asoap-haircare9
+    second: {fileID: 2100000, guid: 0293baded1d85f642b16a8c1e4c06927, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass-candle
+    second: {fileID: 2100000, guid: 743522a69a44423498c5b10119b91c10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #3282
+    second: {fileID: 2100000, guid: eb1bfb9f6aa0b744e923859a92351bbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brown
+    second: {fileID: 2100000, guid: 1245be891c11280468681df6353d377e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candele
+    second: {fileID: 2100000, guid: a680daf05c9bde649a85ee1623303069, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: candle01
+    second: {fileID: 2100000, guid: dbb3acb3838aac7459e239bd11513e65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cotton
+    second: {fileID: 2100000, guid: 71a1e65daddb87d41a235739953fc94a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fabric-towel
+    second: {fileID: 2100000, guid: 29ff2c6ad1979a748ad5975e1208b131, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fabric-towel-dark
+    second: {fileID: 2100000, guid: a3ad554acccc4c5489a68d70128bbf8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flame
+    second: {fileID: 2100000, guid: 86eec1a31db772c43a0d5f013fca2339, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: d77483ff3e8936f4a96ba55d1a7c1e60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass-bottel1
+    second: {fileID: 2100000, guid: 97e248b6bacfec247a109db4672eab08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass-bottel2
+    second: {fileID: 2100000, guid: 6e9429d4d40a2044891c1a273bd7f168, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass-bottel3
+    second: {fileID: 2100000, guid: 1cf2f01f2cd5d014f98ea3ea4740ac5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass-cotton
+    second: {fileID: 2100000, guid: 0c2460905df22e540a6c1690175126d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass-shampoo3,4
+    second: {fileID: 2100000, guid: 920917411472be640aa7478480d06932, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: golden
+    second: {fileID: 2100000, guid: 4e9eb4a9fff25784aa09f879825e7e14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-aesop-hair cream
+    second: {fileID: 2100000, guid: 65bdae2233640bc499648e1631c73784, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-aesop-hand cream
+    second: {fileID: 2100000, guid: b82c66ea726939245a21b525600f32a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-candle
+    second: {fileID: 2100000, guid: 6665159115acea04994cbccaceebfbd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-coco
+    second: {fileID: 2100000, guid: e993bdb7657e5e54eb45524c6342d316, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-fig
+    second: {fileID: 2100000, guid: 3f45c9c9e7bbd7a4da7d306c3cf02298, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-human
+    second: {fileID: 2100000, guid: 1e6f3c70bc6be4d4c8ff44bfbcd44f52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-kum
+    second: {fileID: 2100000, guid: 6d12c6d10e0af4f4ab9b67819e6dbfee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-shampoo1,2
+    second: {fileID: 2100000, guid: 1de50c3f341d5fc4f97f03f9f1b2d50e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-shampoo3,4
+    second: {fileID: 2100000, guid: a8216e3ceaf57e742b0b5ba9ff4e41ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-tube
+    second: {fileID: 2100000, guid: 07b5a6f234e924a428dc6f07f35eec25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label-tube2
+    second: {fileID: 2100000, guid: d828caecd78f72d4e935b4e522305cd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leaf-cactus
+    second: {fileID: 2100000, guid: 41ccc518f3961da419de63c893034ae5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: liquid
+    second: {fileID: 2100000, guid: 24e59d7ba0abbaf459a92905642acbf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal-black
+    second: {fileID: 2100000, guid: b1ce74ca0d0d9d44eacc9bb5c5dba6d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: perfume liquid
+    second: {fileID: 2100000, guid: f5dc924782ac2824c86be1e845d8c2be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: perfume liquid coco
+    second: {fileID: 2100000, guid: a48fd350cb7158e43b453e1d757314f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic cream
+    second: {fileID: 2100000, guid: 31ca631542ff67348a99fa632908e18c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic-black1
+    second: {fileID: 2100000, guid: 4916ac55c0425d847934f15582018189, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic-white
+    second: {fileID: 2100000, guid: 89a977d34d49a1f4d8877fdf77755105, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shampoo
+    second: {fileID: 2100000, guid: faade5f50dd231641a3f64c8efe89800, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: silver
+    second: {fileID: 2100000, guid: 7e524a5a53d6883458d26a254705f5b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: soap
+    second: {fileID: 2100000, guid: 292af480ef7f1964db689766c8472c30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: toiletpaper
+    second: {fileID: 2100000, guid: 2116394752286564d823e1ec63d0114a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: vace-cactus
+    second: {fileID: 2100000, guid: 61ce92aaa5a4cb1459a0a69c08ca32f5, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
