@@ -5,7 +5,9 @@ using UnityEngine;
 public class IsWetTowelAttachCamera : MonoBehaviour
 {
     public GameObject canvas;
-    public bool flag = false;
+    public GameObject canvasBody;
+    public bool flag1 = false;
+    public bool flag2 = false;
 
     void Start()
     {
@@ -13,8 +15,13 @@ public class IsWetTowelAttachCamera : MonoBehaviour
         {
             canvas = GameObject.Find("Towel Canvas2");
         }
+        if(!canvasBody)
+        {
+            canvasBody = GameObject.Find("Towel Canvas3");
+        }
         Debug.Log(canvas);
         canvas.SetActive(false);
+        canvasBody.SetActive(false);
         Debug.Log(UiManager.Instance.isCollisionTowelWashstand);
     }
 
@@ -26,10 +33,10 @@ public class IsWetTowelAttachCamera : MonoBehaviour
             {
                 GameManager.Instance.changeFlagIsTowelWet();
                 UiManager.Instance.ChangeFlagIsCollisionTowelWashstand();
-                if(UiManager.Instance.isCollisionTowelWashstand && !flag)
+                if(UiManager.Instance.isCollisionTowelWashstand && !flag1)
                 {
                     UiManager.Instance.UiSetActiveTrue(canvas);
-                    flag = true;                  
+                    flag1 = true;                  
                 }
                 Debug.Log("change flag is towel wet changed");
                 Debug.Log(GameManager.Instance.isTowelWet);
@@ -42,6 +49,12 @@ public class IsWetTowelAttachCamera : MonoBehaviour
             if(other.tag == "body" && GameManager.Instance.isTowelWet == true)
             {
                 GameManager.Instance.ChangeFlagIsTowelCompleted();
+                UiManager.Instance.changeFlagIsCollisionTowelBody();
+                if(UiManager.Instance.isCollisionTowelBody && !flag2)
+                {
+                    UiManager.Instance.UiSetActiveTrue(canvasBody);
+                    flag2 = true;
+                }
                 Debug.Log("Wet Towel is Completed");
             }
             else

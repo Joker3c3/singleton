@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public bool isTowelCompleted = false;
     public bool isLifeEnd = false;
     public bool isTowelWet = false;
+    public bool isLifeChanged = false;
+    public bool isCollisionBodyFire = false;
+    private int life;
 
     private void Awake()
     {
@@ -22,8 +25,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        setLife(3);
     }
-   
     public void ChangeFlagIsTowelCompleted()
     {
         this.isTowelCompleted = true;
@@ -42,5 +45,35 @@ public class GameManager : MonoBehaviour
     public void changeFlagIsTowelWet()
     {
         this.isTowelWet = true;
+    }
+
+    public void changeFlagIsCollisionBodyFire()
+    {
+        this.isCollisionBodyFire = true;
+    }
+
+    public void changeFlagIsLifeChanged()
+    {
+        this.isLifeChanged = true;
+    }
+
+    public void changeLife()
+    {
+        this.life--;
+    }
+
+    public void setLife(int value)
+    {
+        this.life = value;
+    }
+
+    public int getLife()
+    {
+        return this.life;
+    }
+
+    public void changeFlagIsLifeChangedEnd()
+    {
+        this.isLifeChanged = false;
     }
 }
