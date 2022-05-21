@@ -2675,17 +2675,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231277719}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -6.7130003}
+  m_LocalPosition: {x: 0, y: 0, z: -7.4070005}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children:
   - {fileID: 1063164372}
   - {fileID: 1608149487}
-  m_Father: {fileID: 7762287330764723947}
-  m_RootOrder: 7
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.12290192, y: 1.2843}
+  m_AnchoredPosition: {x: 42710.12, y: 101.284325}
   m_SizeDelta: {x: 1972.157, y: 915.0554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &254940266
@@ -10502,7 +10502,6 @@ GameObject:
   - component: {fileID: 855543993}
   - component: {fileID: 855543992}
   - component: {fileID: 855543991}
-  - component: {fileID: 855543994}
   m_Layer: 5
   m_Name: Third Full Heart
   m_TagString: Untagged
@@ -10537,7 +10536,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855543989}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 88269200aa398284a88d0468256c0d39, type: 2}
   m_CullingMode: 0
@@ -10586,20 +10585,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855543989}
   m_CullTransparentMesh: 1
---- !u!114 &855543994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855543989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc17d2ab45ae474399481dfec5cae67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heartAnimation: {fileID: 855543991}
-  image: {fileID: 855543992}
 --- !u!1 &858933950
 GameObject:
   m_ObjectHideFlags: 0
@@ -13444,8 +13429,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6835632, y: 2.5168817, z: 1.3777552}
-  m_Center: {x: -0.075035095, y: 0.7584413, z: 0.18887758}
+  m_Size: {x: 1.0676537, y: 1.3808916, z: 2.287704}
+  m_Center: {x: -0.1054821, y: 0.7177416, z: 0.11304116}
 --- !u!54 &1104841704
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26807,7 +26792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1836833025
 Transform:
   m_ObjectHideFlags: 0
@@ -26854,8 +26839,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7138844, y: 1, z: 5.4881673}
-  m_Center: {x: 0.14544773, y: 0, z: 0.48456597}
+  m_Size: {x: 2.7585964, y: 1, z: 3.0874076}
+  m_Center: {x: -0.3769083, y: 0, z: 1.9865129}
 --- !u!1 &1836895001
 GameObject:
   m_ObjectHideFlags: 0
@@ -27310,7 +27295,6 @@ GameObject:
   - component: {fileID: 1871923757}
   - component: {fileID: 1871923756}
   - component: {fileID: 1871923755}
-  - component: {fileID: 1871923758}
   m_Layer: 5
   m_Name: Second Full Heart
   m_TagString: Untagged
@@ -27345,7 +27329,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871923753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 88269200aa398284a88d0468256c0d39, type: 2}
   m_CullingMode: 0
@@ -27394,20 +27378,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871923753}
   m_CullTransparentMesh: 1
---- !u!114 &1871923758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871923753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc17d2ab45ae474399481dfec5cae67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heartAnimation: {fileID: 1871923755}
-  image: {fileID: 1871923756}
 --- !u!1 &1873940654
 GameObject:
   m_ObjectHideFlags: 0
@@ -27917,7 +27887,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937698018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 88269200aa398284a88d0468256c0d39, type: 2}
   m_CullingMode: 0
@@ -78426,7 +78396,7 @@ CapsuleCollider:
   m_Radius: 0.49467832
   m_Height: 1.9548883
   m_Direction: 1
-  m_Center: {x: 0.25111407, y: 0.8990183, z: 0.00904268}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7762287330764723946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78443,12 +78413,12 @@ MonoBehaviour:
   firstFullHeart: {fileID: 1937698018}
   secondFullHeart: {fileID: 1871923753}
   thirdFullHeart: {fileID: 855543989}
-  firstHeartAnimation: {fileID: 0}
-  secondHeartAnimation: {fileID: 0}
-  thirdHeartAnimation: {fileID: 0}
-  firstImage: {fileID: 0}
-  secondImage: {fileID: 0}
-  thirdImage: {fileID: 0}
+  firstHeartAnimation: {fileID: 1937698020}
+  secondHeartAnimation: {fileID: 1871923755}
+  thirdHeartAnimation: {fileID: 855543991}
+  firstImage: {fileID: 1937698021}
+  secondImage: {fileID: 1871923756}
+  thirdImage: {fileID: 855543992}
 --- !u!4 &7762287330764723947
 Transform:
   m_ObjectHideFlags: 0
@@ -78467,7 +78437,6 @@ Transform:
   - {fileID: 7762287329997669500}
   - {fileID: 7762287330122691073}
   - {fileID: 7762287329400382903}
-  - {fileID: 231277725}
   m_Father: {fileID: 7762287328976723135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

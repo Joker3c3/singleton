@@ -55,17 +55,20 @@ public class UiManager : MonoBehaviour
     {
         if(GameManager.Instance.isLifeChanged)
         {
-            heartAnimation.enabled = true;
-            Invoke("DisabledAnimation(heartAnimation)", 3f);
-            image.enabled = false;            
-        }
-        if(IsInvoking("DisabledAnimation(heartAnimation"))
-        {
-            CancelInvoke("DisabledAnimation(heartAnimation)");
+            heartAnimation.enabled = true;         
+            StartCoroutine(Instance.DisabledAnimation(heartAnimation));
+            StartCoroutine(Instance.DisabledImage(image));  
         }
     }
-    public void DisabledAnimation(Animator animator)
+    public IEnumerator DisabledAnimation(Animator animator)
     {
+        yield return new WaitForSeconds(5.0f);
         animator.enabled = false;
+    }
+
+    public IEnumerator DisabledImage(Image image)
+    {
+        yield return new WaitForSeconds(5.0f);
+        image.enabled = false;
     }
 }

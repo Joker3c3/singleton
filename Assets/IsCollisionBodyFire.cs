@@ -18,14 +18,9 @@ public class IsCollisionBodyFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firstFullHeart = transform.Find("First Full Heart").gameObject;
-        secondFullHeart = transform.Find("Second Full Heart").gameObject;
-        thirdFullHeart = transform.Find("Third Full Heart").gameObject;
-
-        InitializedCanvasContent(firstFullHeart, firstHeartAnimation, firstImage);
-        InitializedCanvasContent(secondFullHeart, secondHeartAnimation, secondImage);
-        InitializedCanvasContent(thirdFullHeart, thirdHeartAnimation, thirdImage);
-        
+        // InitializedCanvasContent(firstFullHeart, firstHeartAnimation, firstImage);
+        // InitializedCanvasContent(secondFullHeart, secondHeartAnimation, secondImage);
+        // InitializedCanvasContent(thirdFullHeart, thirdHeartAnimation, thirdImage);
     }
 
     // Update is called once per frame
@@ -62,6 +57,23 @@ public class IsCollisionBodyFire : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        firstFullHeart = GameObject.Find("First Full Heart");
+        secondFullHeart = GameObject.Find("Second Full Heart");
+        thirdFullHeart = GameObject.Find("Third Full Heart");
+
+        firstHeartAnimation = firstFullHeart.GetComponent<Animator>();
+        secondHeartAnimation = secondFullHeart.GetComponent<Animator>();
+        thirdHeartAnimation = thirdFullHeart.GetComponent<Animator>();
+
+        firstImage = firstFullHeart.GetComponent<Image>();
+        secondImage = secondFullHeart.GetComponent<Image>();
+        thirdImage = thirdFullHeart.GetComponent<Image>();
+
+        Debug.Log(firstFullHeart);
+        Debug.Log(secondFullHeart);
+        Debug.Log(thirdFullHeart);
+
+
         if (other != null)
         {
             if (other.tag == "fire")
@@ -70,6 +82,7 @@ public class IsCollisionBodyFire : MonoBehaviour
                 {
                     // Game Over
                     GameManager.Instance.isGameEnd = true;
+                    Debug.Log("Life = " + GameManager.Instance.getLife());
 
                     //create reset your game
 
@@ -85,6 +98,7 @@ public class IsCollisionBodyFire : MonoBehaviour
                     UiManager.Instance.EnableAnimation(thirdFullHeart, thirdHeartAnimation, thirdImage);
                     GameManager.Instance.changeFlagIsLifeChangedEnd();
                     GameManager.Instance.isCollisionBodyFire = false;
+                    Debug.Log("Life = " + GameManager.Instance.getLife());
                 }
 
                 if (GameManager.Instance.isCollisionBodyFire && GameManager.Instance.getLife() == 2)
@@ -95,6 +109,7 @@ public class IsCollisionBodyFire : MonoBehaviour
                     UiManager.Instance.EnableAnimation(secondFullHeart, secondHeartAnimation, secondImage);
                     GameManager.Instance.changeFlagIsLifeChangedEnd();
                     GameManager.Instance.isCollisionBodyFire = false;
+                    Debug.Log("Life = " + GameManager.Instance.getLife());
                 }
 
                 if (GameManager.Instance.isCollisionBodyFire && GameManager.Instance.getLife() == 1)
@@ -105,6 +120,7 @@ public class IsCollisionBodyFire : MonoBehaviour
                     UiManager.Instance.EnableAnimation(firstFullHeart, firstHeartAnimation, firstImage);
                     GameManager.Instance.changeFlagIsLifeChangedEnd();
                     GameManager.Instance.isCollisionBodyFire = false;
+                    Debug.Log("Life = " + GameManager.Instance.getLife());
                 }
             }
             else
