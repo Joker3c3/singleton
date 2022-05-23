@@ -31,7 +31,7 @@ public class IsWetTowelAttachCamera : MonoBehaviour
         {
             if(other.tag == "washstand")
             {
-                GameManager.Instance.changeFlagIsTowelWet();
+                GameManager.Instance.ChangeFlagIsTowelWet();
                 UiManager.Instance.ChangeFlagIsCollisionTowelWashstand();
                 if(UiManager.Instance.isCollisionTowelWashstand && !flag1)
                 {
@@ -49,7 +49,7 @@ public class IsWetTowelAttachCamera : MonoBehaviour
             if(other.tag == "body" && GameManager.Instance.isTowelWet == true)
             {
                 GameManager.Instance.ChangeFlagIsTowelCompleted();
-                UiManager.Instance.changeFlagIsCollisionTowelBody();
+                UiManager.Instance.ChangeFlagIsCollisionTowelBody();
                 if(UiManager.Instance.isCollisionTowelBody && !flag2)
                 {
                     UiManager.Instance.UiSetActiveTrue(canvasBody);
