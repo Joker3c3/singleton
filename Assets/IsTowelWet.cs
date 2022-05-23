@@ -11,7 +11,7 @@ public class IsTowelWet : MonoBehaviour
         {
             if(other.tag == "washstand")
             {
-                GameManager.Instance.changeFlagIsTowelWet();
+                GameManager.Instance.ChangeFlagIsTowelWet();
                 Debug.Log("change flag is towel wet changed");
             }
             else
