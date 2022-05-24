@@ -15,6 +15,11 @@ public class UiManager : MonoBehaviour
 
     public GameObject goToMenuButton;
     public GameObject endText;
+    public GameObject lifeCanvas;
+    public GameObject startMapCanvas;
+    public GameObject gameDescriptionCanvas;
+    public GameObject rankingBoardCanvas;
+    public GameObject audioSettingCanvas;
 
     private void Awake()
     {
@@ -31,7 +36,20 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
-        
+        if(!lifeCanvas)
+        {
+            lifeCanvas = GameObject.Find("Life Canvas");
+            Debug.Log(lifeCanvas);
+            UiSetActiveFalse(lifeCanvas);
+        }
+        else 
+        {
+            UiSetActiveFalse(lifeCanvas);
+        }
+        UiSetActiveFalse(gameDescriptionCanvas);
+        UiSetActiveFalse(rankingBoardCanvas);
+        UiSetActiveFalse(audioSettingCanvas);
+        UiGameStart();
     }
    
     public void ChangeFlagIsFirstAttachTowel()
@@ -77,6 +95,17 @@ public class UiManager : MonoBehaviour
         isCorutineEnd = false;
         goToMenuButton = GameObject.Find("Go To Menu Button");
         endText = GameObject.Find("End Text");
+        
+        if(!lifeCanvas)
+        {
+            lifeCanvas = GameObject.Find("Life Canvas");
+            Debug.Log(lifeCanvas);
+            UiSetActiveFalse(lifeCanvas);
+        }
+        else 
+        {
+            UiSetActiveFalse(lifeCanvas);
+        }
     }
 
     public void EnableAnimation(GameObject canvasContents, Animator heartAnimation, Image image)
@@ -127,9 +156,81 @@ public class UiManager : MonoBehaviour
         button.enabled = true;
         textMesh.enabled = true;
         endTextMesh.enabled = true;
-
     }
 
+    public void UiGameStart()
+    {
+        if(!startMapCanvas)
+        {
+            startMapCanvas = GameObject.Find("Start Map Canvas");
+        }
+        else
+        {
+            Button gameStartButton = startMapCanvas.transform.GetChild(0).GetChild(1).GetComponent<Button>();
+            gameStartButton.onClick.AddListener(() => UiGameStartButtonPush());
+            Button gameDescriptionReturnButton = gameDescriptionCanvas.transform.GetChild(0).GetChild(1).GetComponent<Button>();
+            gameDescriptionReturnButton.onClick.AddListener(() => UiGameDescriptionReturnButtonPush());
+            Button rankingBoardButton = startMapCanvas.transform.GetChild(0).GetChild(2).GetComponent<Button>();
+            rankingBoardButton.onClick.AddListener(() => UiGameStartRainkingButtonPush());
+            Button rankingBoardReturnButton = rankingBoardCanvas.transform.GetChild(0).GetChild(1).GetComponent<Button>();
+            rankingBoardReturnButton.onClick.AddListener(() => UiRankingBoardReturnButtonPush());
+            Button gameAudioButton = startMapCanvas.transform.GetChild(0).GetChild(3).GetComponent<Button>();
+            gameAudioButton.onClick.AddListener(() => UiGameAudioButtonPush());
+            Button audioSettingReturnButton = audioSettingCanvas.transform.GetChild(0).GetChild(5).GetComponent<Button>();
+            audioSettingReturnButton.onClick.AddListener(() => UiAudioSettingReturnButtonPush());
+            // startMapCanvas.GetComponent<Button>().onClick.AddListener(() => ReloadScene());
+        }
+    }
 
+    public void UiGameStartButtonPush()
+    {
+        if(!startMapCanvas)
+        {
+            startMapCanvas = GameObject.Find("Start Map Canvas");
+        }
+        else
+        {
+            UiSetActiveFalse(startMapCanvas);
+            if(!gameDescriptionCanvas)
+            {
+                gameDescriptionCanvas = GameObject.Find("Game Description Canvas");
+                UiSetActiveTrue(gameDescriptionCanvas);
+            }
+            else
+            {
+                UiSetActiveTrue(gameDescriptionCanvas);
+            }
+        }
+       
+    }
 
+    public void UiGameDescriptionReturnButtonPush()
+    {
+        UiSetActiveFalse(gameDescriptionCanvas);
+        UiSetActiveTrue(startMapCanvas);
+    }
+
+    public void UiGameStartRainkingButtonPush()
+    {
+        UiSetActiveFalse(startMapCanvas);
+        UiSetActiveTrue(rankingBoardCanvas);
+    }
+
+    public void UiRankingBoardReturnButtonPush()
+    {
+        UiSetActiveFalse(rankingBoardCanvas);
+        UiSetActiveTrue(startMapCanvas);
+    }
+
+    public void UiGameAudioButtonPush()
+    {
+        UiSetActiveFalse(startMapCanvas);
+        UiSetActiveTrue(audioSettingCanvas);
+    }
+
+    public void UiAudioSettingReturnButtonPush()
+    {
+        UiSetActiveFalse(audioSettingCanvas);
+        UiSetActiveTrue(startMapCanvas);
+    }
 }

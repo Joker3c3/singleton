@@ -8,6 +8,7 @@ TagManager:
   - body
   - continousButton
   - fire
+  - potal
   layers:
   - Default
   - TransparentFX
