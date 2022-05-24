@@ -7,6 +7,14 @@ public class RankingBoardRender : MonoBehaviour
 {
     public GameObject prefab;
     public GameObject parent;
+    public RankingBoardRender(
+        GameObject prefab,
+        GameObject parent
+    )
+    {
+        this.prefab = prefab;
+        this.parent = parent;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +24,16 @@ public class RankingBoardRender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RenderRankingBoard();
+
     }
 
     public void RenderRankingBoard()
     {
         Debug.Log(prefab);
         Debug.Log(parent);
-        int nowPosY = 0;
+        float nowPosY = 0.0f;
         int count = 1;
+        DBManager.Instance.setDbTest();
 
         foreach (DbFormat db in DBManager.Instance.DataBase)
         {
@@ -33,12 +42,19 @@ public class RankingBoardRender : MonoBehaviour
             rankingBoardInstance.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = db.userName;
             rankingBoardInstance.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = db.rankingScore.ToString();
 
-            rankingBoardInstance.transform.SetParent(parent.transform, false);
+            rankingBoardInstance.transform.SetParent(parent.transform, true);
+            Debug.Log(parent.transform);
+            if (count == 1)
+            {
+                nowPosY = rankingBoardInstance.GetComponent<RectTransform>().localPosition.y;
+            }
+            rankingBoardInstance.GetComponent<RectTransform>().localPosition = new Vector3(rankingBoardInstance.GetComponent<RectTransform>().localPosition.x,
+             nowPosY, rankingBoardInstance.GetComponent<RectTransform>().localPosition.z);
 
             count++;
-            nowPosY -= 120;
+            nowPosY -= 10.0f;
         }
     }
 
-    
+
 }

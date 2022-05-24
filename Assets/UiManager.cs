@@ -20,6 +20,11 @@ public class UiManager : MonoBehaviour
     public GameObject gameDescriptionCanvas;
     public GameObject rankingBoardCanvas;
     public GameObject audioSettingCanvas;
+    public GameObject userNameCanvas;
+    public GameObject rankingBoardPrefab;
+    public GameObject rankingBoardParent;
+    public InputField inputUserName;
+
 
     private void Awake()
     {
@@ -46,10 +51,6 @@ public class UiManager : MonoBehaviour
         {
             UiSetActiveFalse(lifeCanvas);
         }
-        UiSetActiveFalse(gameDescriptionCanvas);
-        UiSetActiveFalse(rankingBoardCanvas);
-        UiSetActiveFalse(audioSettingCanvas);
-        UiGameStart();
     }
    
     public void ChangeFlagIsFirstAttachTowel()
@@ -106,6 +107,11 @@ public class UiManager : MonoBehaviour
         {
             UiSetActiveFalse(lifeCanvas);
         }
+        UiSetActiveFalse(gameDescriptionCanvas);
+        UiSetActiveFalse(rankingBoardCanvas);
+        UiSetActiveFalse(audioSettingCanvas);
+        UiSetActiveFalse(startMapCanvas);
+        UiGameStart();
     }
 
     public void EnableAnimation(GameObject canvasContents, Animator heartAnimation, Image image)
@@ -171,13 +177,19 @@ public class UiManager : MonoBehaviour
             Button gameDescriptionReturnButton = gameDescriptionCanvas.transform.GetChild(0).GetChild(1).GetComponent<Button>();
             gameDescriptionReturnButton.onClick.AddListener(() => UiGameDescriptionReturnButtonPush());
             Button rankingBoardButton = startMapCanvas.transform.GetChild(0).GetChild(2).GetComponent<Button>();
-            rankingBoardButton.onClick.AddListener(() => UiGameStartRainkingButtonPush());
+            rankingBoardButton.onClick.AddListener(() => UiRainkingButtonPush());
             Button rankingBoardReturnButton = rankingBoardCanvas.transform.GetChild(0).GetChild(1).GetComponent<Button>();
             rankingBoardReturnButton.onClick.AddListener(() => UiRankingBoardReturnButtonPush());
             Button gameAudioButton = startMapCanvas.transform.GetChild(0).GetChild(3).GetComponent<Button>();
             gameAudioButton.onClick.AddListener(() => UiGameAudioButtonPush());
             Button audioSettingReturnButton = audioSettingCanvas.transform.GetChild(0).GetChild(5).GetComponent<Button>();
             audioSettingReturnButton.onClick.AddListener(() => UiAudioSettingReturnButtonPush());
+            Button userNameInputEndButton = userNameCanvas.transform.GetChild(0).GetChild(3).GetComponent<Button>();
+            userNameInputEndButton.onClick.AddListener(()=> UiUserNameInputEndButtonPush());
+            Button userNameInputExitButton = userNameCanvas.transform.GetChild(0).GetChild(4).GetComponent<Button>();
+            userNameInputExitButton.onClick.AddListener(()=>UiUserNameInputExitButtonPush());
+            Button gameExitButton = startMapCanvas.transform.GetChild(0).GetChild(4).GetComponent<Button>();
+            gameExitButton.onClick.AddListener(()=>GameExitButtonPush());
             // startMapCanvas.GetComponent<Button>().onClick.AddListener(() => ReloadScene());
         }
     }
@@ -210,10 +222,12 @@ public class UiManager : MonoBehaviour
         UiSetActiveTrue(startMapCanvas);
     }
 
-    public void UiGameStartRainkingButtonPush()
+    public void UiRainkingButtonPush()
     {
         UiSetActiveFalse(startMapCanvas);
         UiSetActiveTrue(rankingBoardCanvas);
+        RankingBoardRender render = new RankingBoardRender(rankingBoardPrefab, rankingBoardParent);
+        render.RenderRankingBoard();
     }
 
     public void UiRankingBoardReturnButtonPush()
@@ -233,4 +247,35 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(audioSettingCanvas);
         UiSetActiveTrue(startMapCanvas);
     }
+
+    public void UiUserNameInputEndButtonPush()
+    {
+        if(inputUserName.text != null)
+        {
+            UiSetActiveFalse(userNameCanvas);
+            UiSetActiveTrue(startMapCanvas);
+            GameManager.Instance.userName = inputUserName.text;
+        }
+        else
+        {
+            inputUserName.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "한 자 이상 입력해주세요.";
+        }
+    }
+
+    public void UiUserNameInputExitButtonPush()
+    {
+        OnApplicationQuit();
+    }
+
+    public void GameExitButtonPush()
+    {
+        OnApplicationQuit();
+    }
+
+    public void OnApplicationQuit()
+    {
+
+    }
+
+
 }

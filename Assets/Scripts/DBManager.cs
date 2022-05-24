@@ -7,7 +7,7 @@ public class DBManager : MonoBehaviour
     private static DBManager instance;
     public static DBManager Instance { get => instance; }
     private List<DbFormat> dataBase;
-    public List<DbFormat> DataBase { get { return dataBase; } }
+    public List<DbFormat> DataBase { get => dataBase; }
     private void Awake()
     {
         if (instance)
@@ -23,7 +23,7 @@ public class DBManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       setDbTest(); 
+
     }
 
     // Update is called once per frame
@@ -35,25 +35,11 @@ public class DBManager : MonoBehaviour
     public void setDbTest()
     {
         dataBase = new List<DbFormat>();
-        DbFormat user1 = new DbFormat();
-        user1.userName = "김영인";
-        user1.rankingScore = 1000;
-
-        DbFormat user2 = new DbFormat();
-        user2.userName = "이우형";
-        user2.rankingScore = 2000;
-
-        DbFormat user3 = new DbFormat();
-        user3.userName = "임규형";
-        user3.rankingScore = 3000;
-
-        DbFormat user4 = new DbFormat();
-        user4.userName = "백승연";
-        user4.rankingScore = 4000;
-
-        DbFormat user5 = new DbFormat();
-        user2.userName = "홍길동";
-        user2.rankingScore = 5000;
+        DbFormat user1 = new DbFormat("김영인", 1000);
+        DbFormat user2 = new DbFormat("이우형", 2000);
+        DbFormat user3 = new DbFormat("임규형", 3000);
+        DbFormat user4 = new DbFormat("백승연", 4000);
+        DbFormat user5 = new DbFormat("홍길동", 5000);
 
         dataBase.Add(user1);
         dataBase.Add(user2);

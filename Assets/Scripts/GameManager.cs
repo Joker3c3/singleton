@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public bool isCollisionBodyFire = false;
     public bool isUserStateOverWhelming = false;
     private int life;
+    public string userName;
+    public int rankingScore;
 
     private void Awake()
     {
@@ -229,5 +231,10 @@ public class GameManager : MonoBehaviour
             Debug.Log(position);
             Debug.Log(vrRig.transform.position);
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Game Exit");
     }
 }

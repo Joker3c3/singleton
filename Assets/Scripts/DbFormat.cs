@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System;
 
+[Serializable]
 public class DbFormat
 {
     public string userName;
     public int rankingScore;
-
-    void Start()
-    {
-        
+    
+    public DbFormat() {
+        this.userName = GameManager.Instance.userName;
+        this.rankingScore = GameManager.Instance.rankingScore;
     }
+    public DbFormat(
+        string userName,
+        int rankingScore
+    )
+    {
+        this.userName = userName;
+        this.rankingScore = rankingScore;
+    }
+
 }
