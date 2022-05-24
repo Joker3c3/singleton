@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject firstFullHeart;
     public GameObject secondFullHeart;
     public GameObject thirdFullHeart;
+    public GameObject vrRig;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
         Debug.Log(mode);
         GameMangerInstanceReset();
         UiManager.Instance.UiMangerInstanceReset();
+
+        
     }
 
     public void GameMangerInstanceReset()
@@ -212,5 +215,19 @@ public class GameManager : MonoBehaviour
         canvas.GetComponent<FollowToTheSide>().enabled = false;
     }
 
-
+    public void ChangeCameraPosition()
+    {
+        GameObject roomStartPoint = GameObject.Find("Room Start Point");
+        Vector3 position = roomStartPoint.transform.position;
+        if(!vrRig)
+        {
+            vrRig = GameObject.Find("VR Rig");
+        }
+        else
+        {
+            vrRig.transform.position = position;
+            Debug.Log(position);
+            Debug.Log(vrRig.transform.position);
+        }
+    }
 }
