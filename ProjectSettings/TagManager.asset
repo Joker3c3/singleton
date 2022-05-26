@@ -9,6 +9,12 @@ TagManager:
   - continousButton
   - fire
   - potal
+  - VRGazeInteractable
+  - door
+  - hinge
+  - unvisible
+  - exit
+  - smoke
   layers:
   - Default
   - TransparentFX

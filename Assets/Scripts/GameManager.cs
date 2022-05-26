@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Image firstImage;
     public Image secondImage;
     public Image thirdImage;
+    public Quaternion doorPosition;
     public bool isTowelCompleted = false;
     public bool isLifeEnd = false;
     public bool isTowelWet = false;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         SetLife(3);
+        doorPosition = GameObject.Find("handlePivot").transform.rotation;
     }
 
     void OnEnable()

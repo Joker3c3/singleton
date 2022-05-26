@@ -23,7 +23,8 @@ public class UiManager : MonoBehaviour
     public GameObject userNameCanvas;
     public GameObject rankingBoardPrefab;
     public GameObject rankingBoardParent;
-    public InputField inputUserName;
+    public GameObject keyBoard;
+    public TMP_InputField inputUserName;
 
 
     private void Awake()
@@ -111,6 +112,7 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(rankingBoardCanvas);
         UiSetActiveFalse(audioSettingCanvas);
         UiSetActiveFalse(startMapCanvas);
+        UiSetActiveFalse(keyBoard);
         UiGameStart();
     }
 
@@ -250,26 +252,29 @@ public class UiManager : MonoBehaviour
 
     public void UiUserNameInputEndButtonPush()
     {
-        if(inputUserName.text != null)
+        Debug.Log(inputUserName.text);
+        if(inputUserName.text.Length > 0)
         {
+            Debug.Log(inputUserName.text);
             UiSetActiveFalse(userNameCanvas);
             UiSetActiveTrue(startMapCanvas);
+
             GameManager.Instance.userName = inputUserName.text;
         }
         else
         {
-            inputUserName.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "한 자 이상 입력해주세요.";
+            inputUserName.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "한 자 이상 입력해주세요.";
         }
     }
 
     public void UiUserNameInputExitButtonPush()
     {
-        OnApplicationQuit();
+        Application.Quit();
     }
 
     public void GameExitButtonPush()
     {
-        OnApplicationQuit();
+        Application.Quit();
     }
 
     public void OnApplicationQuit()
