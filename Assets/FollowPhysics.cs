@@ -16,6 +16,5 @@ public class FollowPhysics : MonoBehaviour
     void Update()
     {
         rb.MovePosition(target.transform.position);
-        rb.MoveRotation(target.transform.rotation);
     }
 }

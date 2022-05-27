@@ -21,9 +21,12 @@ public class UiManager : MonoBehaviour
     public GameObject rankingBoardCanvas;
     public GameObject audioSettingCanvas;
     public GameObject userNameCanvas;
+    public GameObject laptopCanvas;
     public GameObject rankingBoardPrefab;
     public GameObject rankingBoardParent;
     public GameObject keyBoard;
+    public GameObject laptopKeyBoard;
+
     public TMP_InputField inputUserName;
 
 
@@ -97,6 +100,20 @@ public class UiManager : MonoBehaviour
         isCorutineEnd = false;
         goToMenuButton = GameObject.Find("Go To Menu Button");
         endText = GameObject.Find("End Text");
+        goToMenuButton = GameObject.Find("Go To Menu Button");
+        endText = GameObject.Find("End Text");
+        lifeCanvas = GameObject.Find("Life Canvas");
+        startMapCanvas = GameObject.Find("Start Map Canvas");
+        gameDescriptionCanvas = GameObject.Find("Game Description Canvas");
+        rankingBoardCanvas = GameObject.Find("Ranking Board Canvas");
+        audioSettingCanvas = GameObject.Find("Audio Setting Canvas");
+        userNameCanvas = GameObject.Find("User Name Canvas");
+        rankingBoardPrefab = GameObject.Find("ranking_board_panel_prefab");
+        rankingBoardParent = rankingBoardCanvas.transform.GetChild(0).gameObject;
+        keyBoard = GameObject.Find("Keyboard");
+        inputUserName = userNameCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
+        laptopKeyBoard = GameObject.Find("Laptop Keyboard");
+        laptopCanvas = GameObject.Find("Laptop Canvas");
         
         if(!lifeCanvas)
         {
@@ -108,11 +125,24 @@ public class UiManager : MonoBehaviour
         {
             UiSetActiveFalse(lifeCanvas);
         }
+        
         UiSetActiveFalse(gameDescriptionCanvas);
         UiSetActiveFalse(rankingBoardCanvas);
         UiSetActiveFalse(audioSettingCanvas);
         UiSetActiveFalse(startMapCanvas);
         UiSetActiveFalse(keyBoard);
+
+        //reset laptopCanvas
+        for(int i = 1; i<=6; i++)
+        {
+            UiSetActiveFalse(laptopCanvas.transform.GetChild(i).gameObject);
+        }
+
+        //reset laptopKeyboard
+        for(int i = 1; i<=6; i++)
+        {
+            UiSetActiveFalse(laptopKeyBoard.transform.GetChild(i).gameObject);
+        }
         UiGameStart();
     }
 
@@ -192,7 +222,40 @@ public class UiManager : MonoBehaviour
             userNameInputExitButton.onClick.AddListener(()=>UiUserNameInputExitButtonPush());
             Button gameExitButton = startMapCanvas.transform.GetChild(0).GetChild(4).GetComponent<Button>();
             gameExitButton.onClick.AddListener(()=>GameExitButtonPush());
-            // startMapCanvas.GetComponent<Button>().onClick.AddListener(() => ReloadScene());
+            
+            //for laptopUi
+            Button firstEnter = laptopKeyBoard.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(4).GetChild(3).GetComponent<Button>();
+            firstEnter.onClick.AddListener(()=>TriggerFirstEnter());
+            Button folderButtonGirlfriend = laptopCanvas.transform.GetChild(1).GetChild(0).GetComponent<Button>();
+            folderButtonGirlfriend.onClick.AddListener(()=>UiLaptopCanvasFolderButtonGirlfriendPush());
+            Button thirdEnter = laptopKeyBoard.transform.GetChild(2).GetChild(1).GetChild(1).GetChild(4).GetChild(3).GetComponent<Button>();
+            thirdEnter.onClick.AddListener(()=>TriggerThirdEnter());
+            
+            //at third, return second
+            Button thirdUndoButton = laptopCanvas.transform.GetChild(2).GetChild(2).GetComponent<Button>();
+            thirdUndoButton.onClick.AddListener(()=>UiLaptopCanvasUndoButtonPush());
+
+            //at fourth
+            Button fourthEnter = laptopCanvas.transform.GetChild(3).GetChild(0).GetComponent<Button>();
+            fourthEnter.onClick.AddListener(()=>TriggerFourthEnter());
+            //at fourth return
+            Button fourthUndoButton = laptopCanvas.transform.GetChild(3).GetChild(2).GetComponent<Button>();
+            fourthUndoButton.onClick.AddListener(()=>LaptopKeyboardFifthBackspacePush());
+
+            Button fifthUndoButton = laptopCanvas.transform.GetChild(4).GetChild(1).GetComponent<Button>();
+            fifthUndoButton.onClick.AddListener(()=>UiLaptopCanvasFifthUndoButtonPush());
+
+            //garbage
+            Button folderButtonTrash = laptopCanvas.transform.GetChild(1).GetChild(2).GetComponent<Button>();
+            folderButtonTrash.onClick.AddListener(()=>UiLaptopCanvasFolderButtonTrashPush());
+            Button folderButtonTrashUndo = laptopCanvas.transform.GetChild(5).GetChild(1).GetComponent<Button>();
+            folderButtonTrashUndo.onClick.AddListener(()=>UiLaptopCanvasSixthUndoButtonPush());
+
+            //My PC
+            Button folderButtonMyPC = laptopCanvas.transform.GetChild(1).GetChild(4).GetComponent<Button>();
+            folderButtonMyPC.onClick.AddListener(()=>UiLaptopCanvasFolderButtonMyPcPush());
+            Button seventhEnter = laptopKeyBoard.transform.GetChild(6).GetChild(1).GetChild(1).GetChild(4).GetChild(3).GetComponent<Button>();
+            seventhEnter.onClick.AddListener(()=>TriggerSeventhEnter());
         }
     }
 
@@ -265,6 +328,110 @@ public class UiManager : MonoBehaviour
         {
             inputUserName.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "한 자 이상 입력해주세요.";
         }
+    }
+
+    public void TriggerFirstEnter()
+    {
+        Debug.Log(laptopCanvas.transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>().text);
+        Debug.Log(GameManager.Instance.passwordLaptop);
+        if(laptopCanvas.transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>().text == GameManager.Instance.passwordLaptop)
+        {
+            UiSetActiveFalse(laptopCanvas.transform.GetChild(0).gameObject);
+            UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
+            UiSetActiveFalse(laptopKeyBoard.transform.GetChild(0).gameObject);
+            UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
+        }
+        else
+        {
+            laptopCanvas.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "wrong password";
+        }
+    }
+
+    public void UiLaptopCanvasFolderButtonGirlfriendPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(2).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(2).gameObject);
+    }
+
+    public void TriggerThirdEnter()
+    {
+        if(laptopCanvas.transform.GetChild(2).GetChild(0).GetComponent<TMP_InputField>().text == GameManager.Instance.passwordLaptopFolder.ToString())
+        {
+            UiSetActiveFalse(laptopCanvas.transform.GetChild(2).gameObject);
+            UiSetActiveTrue(laptopCanvas.transform.GetChild(3).gameObject);
+            UiSetActiveFalse(laptopKeyBoard.transform.GetChild(2).gameObject);
+            UiSetActiveTrue(laptopKeyBoard.transform.GetChild(3).gameObject);
+        }
+        else
+        {
+            laptopCanvas.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = "wrong password";
+        }
+    }
+
+    public void UiLaptopCanvasUndoButtonPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(2).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(2).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
+    }
+
+    public void TriggerFourthEnter()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(3).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(4).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(3).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(4).gameObject);
+    }
+
+    public void LaptopKeyboardFifthBackspacePush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(3).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(3).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
+    }
+
+    public void UiLaptopCanvasFifthUndoButtonPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(4).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(3).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(4).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(3).gameObject);
+    }
+
+    public void UiLaptopCanvasFolderButtonTrashPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(5).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(5).gameObject);
+    }
+
+    public void UiLaptopCanvasSixthUndoButtonPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(5).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(5).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
+    }
+
+    public void UiLaptopCanvasFolderButtonMyPcPush()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(6).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(1).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(6).gameObject);
+    }
+
+    public void TriggerSeventhEnter()
+    {
+        UiSetActiveFalse(laptopCanvas.transform.GetChild(6).gameObject);
+        UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveFalse(laptopKeyBoard.transform.GetChild(6).gameObject);
+        UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
     }
 
     public void UiUserNameInputExitButtonPush()
