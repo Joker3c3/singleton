@@ -22,6 +22,7 @@ public class IsCollisionBodyFire : MonoBehaviour
     {
         if (other != null)
         {
+            Debug.Log(other.name);
             if (other.tag == "fire" || other.tag == "smoke")
             {
                 GameManager.Instance.DamagedByFire();

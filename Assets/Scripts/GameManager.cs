@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     public GameObject secondFullHeart;
     public GameObject thirdFullHeart;
     public GameObject vrRig;
+    public GameObject diary;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
     public Image firstImage;
     public Image secondImage;
     public Image thirdImage;
-    public Quaternion doorPosition;
     public bool isTowelCompleted = false;
     public bool isLifeEnd = false;
     public bool isTowelWet = false;
@@ -26,21 +26,22 @@ public class GameManager : MonoBehaviour
     public bool isUserStateOverWhelming = false;
     private int life;
     public string userName;
+    public string passwordLaptop;
+    public int passwordLaptopFolder;
     public int rankingScore;
 
     private void Awake()
     {
         if (instance)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         SetLife(3);
-        doorPosition = GameObject.Find("handlePivot").transform.rotation;
     }
 
     void OnEnable()
@@ -57,42 +58,42 @@ public class GameManager : MonoBehaviour
 
     public void ChangeFlagIsTowelCompleted()
     {
-        this.isTowelCompleted = true;
+        isTowelCompleted = true;
     }
 
     public void ChangeFlagIsLifeEnd()
     {
-        this.isLifeEnd = true;
+        isLifeEnd = true;
     }
 
     public void ChangeFlagIsTowelWet()
     {
-        this.isTowelWet = true;
+        isTowelWet = true;
     }
 
     public void ChangeFlagIsCollisionBodyFire()
     {
-        this.isCollisionBodyFire = true;
+        isCollisionBodyFire = true;
     }
 
     public void ChangeFlagIsUserStateOverWhelming()
     {
-        this.isUserStateOverWhelming = true;
+        isUserStateOverWhelming = true;
     }
 
     public void ChangeLife()
     {
-        this.life--;
+        life--;
     }
 
     public void SetLife(int value)
     {
-        this.life = value;
+        life = value;
     }
 
     public int GetLife()
     {
-        return this.life;
+        return life;
     }
 
     public void StayUserOverWhelming()
@@ -112,22 +113,38 @@ public class GameManager : MonoBehaviour
 
     public void GameMangerInstanceReset()
     {
-        this.isTowelCompleted = false;
-        this.isLifeEnd = false;
-        this.isTowelWet = false;
-        this.isCollisionBodyFire = false;
-        this.isUserStateOverWhelming = false;
-        this.life = 3;
-        this.firstFullHeart = GameObject.Find("First Full Heart");
-        this.secondFullHeart = GameObject.Find("Second Full Heart");
-        this.thirdFullHeart = GameObject.Find("Third Full Heart");
-        this.firstHeartAnimation = firstFullHeart.GetComponent<Animator>();
-        this.secondHeartAnimation = secondFullHeart.GetComponent<Animator>();
-        this.thirdHeartAnimation = thirdFullHeart.GetComponent<Animator>();
-        this.firstImage = firstFullHeart.GetComponent<Image>();
-        this.secondImage = secondFullHeart.GetComponent<Image>();
-        this.thirdImage = thirdFullHeart.GetComponent<Image>();
+        isTowelCompleted = false;
+        isLifeEnd = false;
+        isTowelWet = false;
+        isCollisionBodyFire = false;
+        isUserStateOverWhelming = false;
+        life = 3;
+        firstFullHeart = GameObject.Find("First Full Heart");
+        secondFullHeart = GameObject.Find("Second Full Heart");
+        thirdFullHeart = GameObject.Find("Third Full Heart");
+        firstHeartAnimation = firstFullHeart.GetComponent<Animator>();
+        secondHeartAnimation = secondFullHeart.GetComponent<Animator>();
+        thirdHeartAnimation = thirdFullHeart.GetComponent<Animator>();
+        firstImage = firstFullHeart.GetComponent<Image>();
+        secondImage = secondFullHeart.GetComponent<Image>();
+        thirdImage = thirdFullHeart.GetComponent<Image>();
+        passwordLaptop = "paris";
+        passwordLaptopFolder = 1874358;
+        diary = GameObject.Find("Diary");
+
+        GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
     }
+
+    public void GameObjectSetActiveFalse(GameObject target)
+    {
+        target.SetActive(false);
+    }
+
+    public void GameObjectSetActiveTrue(GameObject target)
+    {
+        target.SetActive(true);
+    }
+
     public void DamagedByFire()
     {
         Damage();
@@ -233,6 +250,11 @@ public class GameManager : MonoBehaviour
             Debug.Log(position);
             Debug.Log(vrRig.transform.position);
         }
+    }
+
+    public void CheckLaptopPassword()
+    {
+
     }
 
     private void OnApplicationQuit()
