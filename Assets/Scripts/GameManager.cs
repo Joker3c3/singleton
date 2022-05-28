@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private int life;
     public string userName;
     public string passwordLaptop;
+    public string passwordSafe;
     public int passwordLaptopFolder;
     public int rankingScore;
 
@@ -49,6 +50,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        passwordSafe = "0000";
     }
 
     void OnDisable()
@@ -106,8 +112,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-        GameMangerInstanceReset();
-        UiManager.Instance.UiMangerInstanceReset();
+        // GameMangerInstanceReset();
+        // UiManager.Instance.UiMangerInstanceReset();
 
         
     }
