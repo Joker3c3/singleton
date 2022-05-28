@@ -38,7 +38,6 @@ public class ContinuousMovement : MonoBehaviour
         Quaternion headYaw = Quaternion.Euler(0, rig.Camera.transform.eulerAngles.y, 0);
         Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
 
-        Debug.Log(direction);
         character.Move(direction * Time.fixedDeltaTime * speed);
 
         // gravity
@@ -55,8 +54,6 @@ public class ContinuousMovement : MonoBehaviour
         character.height = rig.CameraInOriginSpaceHeight + additionalHeight;
         Vector3 capsuleCenter = transform.InverseTransformPoint(rig.Camera.transform.position);
         character.center = new Vector3(capsuleCenter.x, character.height/2 + character.skinWidth, capsuleCenter.z);
-        Debug.Log(character.center);
-
     }
 
     bool CheckIfGrounded()

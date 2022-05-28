@@ -27,8 +27,10 @@ public class UiManager : MonoBehaviour
     public GameObject keyBoard;
     public GameObject laptopKeyBoard;
     public GameObject diaryCanvas;
+    public GameObject safeCanvas;
 
     public TMP_InputField inputUserName;
+    public TMP_InputField safeInputField;
 
 
     private void Awake()
@@ -113,6 +115,8 @@ public class UiManager : MonoBehaviour
         rankingBoardParent = rankingBoardCanvas.transform.GetChild(0).gameObject;
         keyBoard = GameObject.Find("Keyboard");
         inputUserName = userNameCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
+        safeCanvas = GameObject.Find("Safe Canvas");
+        safeInputField = safeCanvas.transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>();
         laptopKeyBoard = GameObject.Find("Laptop Keyboard");
         laptopCanvas = GameObject.Find("Laptop Canvas");
         diaryCanvas = GameObject.Find("Diary Canvas");

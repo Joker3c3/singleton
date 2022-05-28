@@ -15,6 +15,7 @@ TagManager:
   - unvisible
   - exit
   - smoke
+  - key_shirt
   layers:
   - Default
   - TransparentFX

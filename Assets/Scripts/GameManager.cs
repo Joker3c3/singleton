@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject thirdFullHeart;
     public GameObject vrRig;
     public GameObject diary;
+    public GameObject clothes;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private int life;
     public string userName;
     public string passwordLaptop;
+    public string passwordSafe;
     public int passwordLaptopFolder;
     public int rankingScore;
 
@@ -48,6 +50,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        passwordSafe = "0000";
     }
 
     void OnDisable()
@@ -105,8 +112,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-        GameMangerInstanceReset();
-        UiManager.Instance.UiMangerInstanceReset();
+        // GameMangerInstanceReset();
+        // UiManager.Instance.UiMangerInstanceReset();
 
         
     }
@@ -131,6 +138,7 @@ public class GameManager : MonoBehaviour
         passwordLaptop = "paris";
         passwordLaptopFolder = 1874358;
         diary = GameObject.Find("Diary");
+        clothes = GameObject.Find("clothes");
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
     }
