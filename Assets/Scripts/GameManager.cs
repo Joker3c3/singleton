@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject thirdFullHeart;
     public GameObject vrRig;
     public GameObject diary;
+    public GameObject clothes;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
@@ -131,6 +132,7 @@ public class GameManager : MonoBehaviour
         passwordLaptop = "paris";
         passwordLaptopFolder = 1874358;
         diary = GameObject.Find("Diary");
+        clothes = GameObject.Find("clothes");
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
     }
