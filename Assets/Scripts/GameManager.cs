@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject secondFullHeart;
     public GameObject thirdFullHeart;
     public GameObject vrRig;
+    public GameObject diary;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
@@ -129,7 +130,21 @@ public class GameManager : MonoBehaviour
         thirdImage = thirdFullHeart.GetComponent<Image>();
         passwordLaptop = "paris";
         passwordLaptopFolder = 1874358;
+        diary = GameObject.Find("Diary");
+
+        GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
     }
+
+    public void GameObjectSetActiveFalse(GameObject target)
+    {
+        target.SetActive(false);
+    }
+
+    public void GameObjectSetActiveTrue(GameObject target)
+    {
+        target.SetActive(true);
+    }
+
     public void DamagedByFire()
     {
         Damage();

@@ -26,6 +26,7 @@ public class UiManager : MonoBehaviour
     public GameObject rankingBoardParent;
     public GameObject keyBoard;
     public GameObject laptopKeyBoard;
+    public GameObject diaryCanvas;
 
     public TMP_InputField inputUserName;
 
@@ -114,6 +115,7 @@ public class UiManager : MonoBehaviour
         inputUserName = userNameCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
         laptopKeyBoard = GameObject.Find("Laptop Keyboard");
         laptopCanvas = GameObject.Find("Laptop Canvas");
+        diaryCanvas = GameObject.Find("Diary Canvas");
         
         if(!lifeCanvas)
         {
@@ -131,6 +133,7 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(audioSettingCanvas);
         UiSetActiveFalse(startMapCanvas);
         UiSetActiveFalse(keyBoard);
+        UiSetActiveFalse(diaryCanvas);
 
         //reset laptopCanvas
         for(int i = 1; i<=6; i++)
