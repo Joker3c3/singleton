@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public string passwordSafe;
     public int passwordLaptopFolder;
     public int rankingScore;
+    public int countInFire;
 
     private void Awake()
     {
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         passwordSafe = "0000";
+        countInFire = 3;
     }
 
     void OnDisable()
