@@ -16,6 +16,7 @@ TagManager:
   - exit
   - smoke
   - key_shirt
+  - first_room_lock
   layers:
   - Default
   - TransparentFX
