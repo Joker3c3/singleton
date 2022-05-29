@@ -5,7 +5,6 @@ using UnityEngine;
 public class IsCollisionFireExtinguisherEffectToFire : MonoBehaviour
 {
     public GameObject frontDoorObstacle;
-    public ParticleSystem ps;
     public Vector3 scale1;
     public Vector3 scale2;
     public Vector3 scale3;
