@@ -23,7 +23,7 @@ public class FireExtinguisher : MonoBehaviour
     public void SquirtFireExtinguisher()
     {
         GameObject spawnedfireExtinguisherEffect = Instantiate(fireExtinguisherEffect, effectNozzle.position, effectNozzle.rotation);
-        // audioSource.PlayOneShot(audioClip);
+        audioSource.PlayOneShot(audioClip);
         Destroy(spawnedfireExtinguisherEffect, 2);
     }
 }
