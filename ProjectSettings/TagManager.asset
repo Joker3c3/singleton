@@ -18,6 +18,7 @@ TagManager:
   - key_shirt
   - first_room_lock
   - last_fire
+  - living_room_lock
   layers:
   - Default
   - TransparentFX
