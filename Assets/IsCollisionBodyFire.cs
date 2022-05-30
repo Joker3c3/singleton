@@ -32,6 +32,10 @@ public class IsCollisionBodyFire : MonoBehaviour
                 GameManager.Instance.ChangeCameraPosition();
                 UiManager.Instance.UiSetActiveTrue(UiManager.Instance.lifeCanvas);
             }
+            else if (other.tag == "exit")
+            {
+                
+            }
             else
             {
                 Debug.Log("Is not fire. You are safe");
