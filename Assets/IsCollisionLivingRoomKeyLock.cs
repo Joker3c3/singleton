@@ -24,6 +24,7 @@ public class IsCollisionLivingRoomKeyLock : MonoBehaviour
     {
         if(ohter.tag == "living_room_lock")
         {
+            GameManager.Instance.secondDoorOpen = true;
             doorRigidbody.constraints = RigidbodyConstraints.None;
             livingRoomLock.tag = "Untagged";
             audioSource.PlayOneShot(audioClip);

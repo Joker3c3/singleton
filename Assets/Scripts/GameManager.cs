@@ -14,12 +14,16 @@ public class GameManager : MonoBehaviour
     public GameObject vrRig;
     public GameObject diary;
     public GameObject clothes;
+    public GameObject potal;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
     public Image firstImage;
     public Image secondImage;
     public Image thirdImage;
+    public bool firstDoorOpen = false;
+    public bool secondDoorOpen = false;
+    public bool fireExtinguisherDoorOpen = false;
     public bool isTowelCompleted = false;
     public bool isLifeEnd = false;
     public bool isTowelWet = false;
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
     public string userName;
     public string passwordLaptop;
     public string passwordSafe;
+    public string passwordFireExtinguisher;
     public int passwordLaptopFolder;
     public int rankingScore;
     public int countInFire;
@@ -55,8 +60,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        passwordSafe = "0000";
-        countInFire = 3;
+
     }
 
     void OnDisable()
@@ -114,8 +118,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-        // GameMangerInstanceReset();
-        // UiManager.Instance.UiMangerInstanceReset();
+        GameMangerInstanceReset();
+        UiManager.Instance.UiMangerInstanceReset();
 
         
     }
@@ -139,10 +143,15 @@ public class GameManager : MonoBehaviour
         thirdImage = thirdFullHeart.GetComponent<Image>();
         passwordLaptop = "paris";
         passwordLaptopFolder = 1874358;
+        passwordSafe = "210305";
+        passwordFireExtinguisher = "FIRE";
         diary = GameObject.Find("Diary");
         clothes = GameObject.Find("clothes");
+        potal = GameObject.Find("portal");
+        countInFire = 3;
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
+        GameObjectSetActiveFalse(potal);
     }
 
     public void GameObjectSetActiveFalse(GameObject target)

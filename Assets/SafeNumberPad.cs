@@ -6,6 +6,8 @@ using TMPro;
 
 public class SafeNumberPad : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     public TextMeshProUGUI placeHolder;
     public TMP_InputField inputField;
     public GameObject safeDoor;
@@ -25,76 +27,88 @@ public class SafeNumberPad : MonoBehaviour
     public void ButtonOneClick()
     {
         inputField.text += "1";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonTwoClick()
     {
         inputField.text += "2";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonThreeClick()
     {
         inputField.text += "3";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonFourClick()
     {
         inputField.text += "4";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonFiveClick()
     {
         inputField.text += "5";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonSixClick()
     {
         inputField.text += "6";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonSevenClick()
     {
         inputField.text += "7";
+        audioSource.PlayOneShot(audioClip);
     }
     public void ButtonEightClick()
     {
         inputField.text += "8";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonNineClick()
     {
         inputField.text += "9";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonZeroClick()
     {
         inputField.text += "0";
+        audioSource.PlayOneShot(audioClip);
     }
 
     public void ButtonEnterClick()
     {
+        audioSource.PlayOneShot(audioClip);
         if(inputField.text.Length > 0)
         {
             if(inputField.text == "0000")//GameManager.Instance.passwordSafe)
             {
                 safeDoor.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                placeHolder.text = "Correct Password.. Door Opened";
+                placeHolder.text = "암호가 일치합니다!";
                 inputField.text = "";
             }
             else
             {
-                placeHolder.text = "wrong password";
+                placeHolder.text = "잘못된 암호입니다.";
                 inputField.text = "";
             }
         }
         else
         {
-            placeHolder.text = "Enter Password at least One";
+            placeHolder.text = "한 자 이상 입력";
         }
     }
 
     public void ButtonBackspaceClick()
     {
+        audioSource.PlayOneShot(audioClip);
         if (inputField.text.Length > 0)
         {
             inputField.text = inputField.text.Remove(inputField.text.Length - 1);

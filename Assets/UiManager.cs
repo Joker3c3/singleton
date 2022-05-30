@@ -28,10 +28,12 @@ public class UiManager : MonoBehaviour
     public GameObject laptopKeyBoard;
     public GameObject diaryCanvas;
     public GameObject safeCanvas;
+    public GameObject fireExtinguisherCanvas;
+    public GameObject fireExtinguisherDoor;
 
     public TMP_InputField inputUserName;
+    public TMP_InputField fireExtinguisherInputField;
     public TMP_InputField safeInputField;
-
 
     private void Awake()
     {
@@ -120,6 +122,9 @@ public class UiManager : MonoBehaviour
         laptopKeyBoard = GameObject.Find("Laptop Keyboard");
         laptopCanvas = GameObject.Find("Laptop Canvas");
         diaryCanvas = GameObject.Find("Diary Canvas");
+        fireExtinguisherCanvas = GameObject.Find("FireExtinguisherCanvas");
+        fireExtinguisherInputField = fireExtinguisherCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
+        fireExtinguisherDoor = GameObject.Find("Fire Extinguisher Door");
         
         if(!lifeCanvas)
         {
@@ -138,6 +143,7 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(startMapCanvas);
         UiSetActiveFalse(keyBoard);
         UiSetActiveFalse(diaryCanvas);
+        UiSetActiveFalse(fireExtinguisherCanvas);
 
         //reset laptopCanvas
         for(int i = 1; i<=6; i++)
@@ -260,9 +266,17 @@ public class UiManager : MonoBehaviour
 
             //My PC
             Button folderButtonMyPC = laptopCanvas.transform.GetChild(1).GetChild(4).GetComponent<Button>();
-            folderButtonMyPC.onClick.AddListener(()=>UiLaptopCanvasFolderButtonMyPcPush());
+            folderButtonMyPC.onClick.AddListener(() => UiLaptopCanvasFolderButtonMyPcPush());
             Button seventhEnter = laptopKeyBoard.transform.GetChild(6).GetChild(1).GetChild(1).GetChild(4).GetChild(3).GetComponent<Button>();
-            seventhEnter.onClick.AddListener(()=>TriggerSeventhEnter());
+            seventhEnter.onClick.AddListener(() => TriggerSeventhEnter());
+
+            Button fireExtinguisherKeyboardEnter = fireExtinguisherCanvas.transform.GetChild(1).GetChild(1).GetChild(1).GetChild(4).GetChild(3).GetComponent<Button>();
+            fireExtinguisherKeyboardEnter.onClick.AddListener(() => CheckCorrectPasswordFireExtinguisher());
+            Button fireExtinguisherCanvasContinueButton = fireExtinguisherCanvas.transform.GetChild(2).GetChild(1).GetComponent<Button>();
+            fireExtinguisherCanvasContinueButton.onClick.AddListener(() => FireExtinguisherCanvasContinueButtonPush());
+            Button fireExtinguisherCanvasReturnButton = fireExtinguisherCanvas.transform.GetChild(3).GetChild(1).GetComponent<Button>();
+            fireExtinguisherCanvasReturnButton.onClick.AddListener(() => fireExtinguisherCanvasReturnButtonPush());
+
         }
     }
 
@@ -440,6 +454,43 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(laptopKeyBoard.transform.GetChild(6).gameObject);
         UiSetActiveTrue(laptopKeyBoard.transform.GetChild(1).gameObject);
     }
+
+    public void UiFireExtinguisherCanvas()
+    {
+        UiSetActiveTrue(fireExtinguisherCanvas.gameObject);
+        UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(1).gameObject);
+        UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(2).gameObject);
+        UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(3).gameObject);
+    }
+
+    public void CheckCorrectPasswordFireExtinguisher()
+    {
+        if(fireExtinguisherInputField.text == GameManager.Instance.passwordFireExtinguisher)
+        {
+            UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(0).gameObject);
+            UiSetActiveTrue(fireExtinguisherCanvas.transform.GetChild(2).gameObject);
+            fireExtinguisherDoor.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GameManager.Instance.fireExtinguisherDoorOpen = true;
+        }
+        else
+        {
+            UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(0).gameObject);
+            UiSetActiveTrue(fireExtinguisherCanvas.transform.GetChild(3).gameObject);
+        }
+    }
+
+    public void FireExtinguisherCanvasContinueButtonPush()
+    {
+        UiSetActiveFalse(fireExtinguisherCanvas.gameObject);
+    }
+
+    public void fireExtinguisherCanvasReturnButtonPush()
+    {
+        UiSetActiveFalse(fireExtinguisherCanvas.transform.GetChild(3).gameObject);
+        UiSetActiveTrue(fireExtinguisherCanvas.transform.GetChild(0).gameObject);
+    }
+
+
 
     public void UiUserNameInputExitButtonPush()
     {
