@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public Image secondImage;
     public Image thirdImage;
     public bool firstDoorOpen = false;
+    public bool firstRoomSafeDoorOpen = false;
+    public bool LivingRoomSafeDoorOpen = false;
+    public bool drawerDoorOpen = false;
     public bool secondDoorOpen = false;
     public bool fireExtinguisherDoorOpen = false;
     public bool isTowelCompleted = false;
@@ -29,14 +32,18 @@ public class GameManager : MonoBehaviour
     public bool isTowelWet = false;
     public bool isCollisionBodyFire = false;
     public bool isUserStateOverWhelming = false;
+    public bool isGameEnd = false;
     private int life;
     public string userName;
     public string passwordLaptop;
     public string passwordSafe;
+    public string passwordSafeLivingRoom;
     public string passwordFireExtinguisher;
     public int passwordLaptopFolder;
     public int rankingScore;
     public int countInFire;
+    public int timer;
+    public IEnumerator timerCoroutine;
 
     private void Awake()
     {
@@ -63,10 +70,30 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void Update()
+    {
+
+    }
+
     void OnDisable()
     {
         Debug.Log("OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void TimerStart()
+    {
+        StartCoroutine(timerCoroutine);
+    }
+
+    public IEnumerator Timer()
+    {
+        while(!isGameEnd)
+        {
+            yield return new WaitForSecondsRealtime(1.0f);
+            timer++;
+            Debug.Log(timer);
+        }
     }
 
     public void ChangeFlagIsTowelCompleted()
@@ -131,6 +158,9 @@ public class GameManager : MonoBehaviour
         isTowelWet = false;
         isCollisionBodyFire = false;
         isUserStateOverWhelming = false;
+        firstRoomSafeDoorOpen = false;
+        LivingRoomSafeDoorOpen = false;
+        drawerDoorOpen = false;
         life = 3;
         firstFullHeart = GameObject.Find("First Full Heart");
         secondFullHeart = GameObject.Find("Second Full Heart");
@@ -144,11 +174,20 @@ public class GameManager : MonoBehaviour
         passwordLaptop = "paris";
         passwordLaptopFolder = 1874358;
         passwordSafe = "210305";
+        passwordSafeLivingRoom = "●■♣★";
         passwordFireExtinguisher = "FIRE";
         diary = GameObject.Find("Diary");
         clothes = GameObject.Find("clothes");
         potal = GameObject.Find("portal");
         countInFire = 3;
+        timer = 0;
+        timerCoroutine = Timer();
+        isGameEnd = false;
+
+        //test
+        userName = "young2";
+        rankingScore = 20000;
+        //test end
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
         GameObjectSetActiveFalse(potal);
@@ -234,6 +273,13 @@ public class GameManager : MonoBehaviour
         UiManager.Instance.goToMenuButton.GetComponent<Button>().onClick.AddListener(() => ReloadScene());
 
     }
+
+    public void HandleGameEndComplete()
+    {
+        UiManager.Instance.UiGameEndComplete();
+        DisableMainCamera();
+    }
+
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

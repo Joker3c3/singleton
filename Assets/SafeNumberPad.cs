@@ -8,6 +8,8 @@ public class SafeNumberPad : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioClip audioPasswordCorrect;
+    public AudioClip audioPasswordWrong;
     public TextMeshProUGUI placeHolder;
     public TMP_InputField inputField;
     public GameObject safeDoor;
@@ -86,23 +88,27 @@ public class SafeNumberPad : MonoBehaviour
     public void ButtonEnterClick()
     {
         audioSource.PlayOneShot(audioClip);
-        if(inputField.text.Length > 0)
+        if (inputField.text.Length > 0)
         {
-            if(inputField.text == "0000")//GameManager.Instance.passwordSafe)
+            if (inputField.text == GameManager.Instance.passwordSafe)
             {
                 safeDoor.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                GameManager.Instance.firstRoomSafeDoorOpen = true;
                 placeHolder.text = "암호가 일치합니다!";
                 inputField.text = "";
+                audioSource.PlayOneShot(audioPasswordCorrect);
             }
             else
             {
                 placeHolder.text = "잘못된 암호입니다.";
                 inputField.text = "";
+                audioSource.PlayOneShot(audioPasswordWrong);
             }
         }
         else
         {
             placeHolder.text = "한 자 이상 입력";
+            audioSource.PlayOneShot(audioPasswordWrong);
         }
     }
 

@@ -10,6 +10,8 @@ public class SquarepadButtonClick : MonoBehaviour
     public Rigidbody doorRigidbody;
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioClip audioPasswordCorrect;
+    public AudioClip audioPasswordWrong;
     public Button button1;
     public Button button2;
     public Button button3;
@@ -51,12 +53,15 @@ public class SquarepadButtonClick : MonoBehaviour
     {
         if (secondFlag == 1 && thirdFlag == 1 && sixthFlag == 1 && firstFlag == 0 && fourthFlag == 0 && fifthFlag == 0)
         {
+            audioSource.PlayOneShot(audioPasswordCorrect);
             doorRigidbody.constraints = RigidbodyConstraints.None;
-            inputField.text = "correct answer!";
+            GameManager.Instance.drawerDoorOpen = true;
+            inputField.text = "정답입니다!";
         }
         else
         {
-            inputField.text = "wrong answer..";
+            audioSource.PlayOneShot(audioPasswordWrong);
+            inputField.text = "틀렸습니다..";
         }
     }
 

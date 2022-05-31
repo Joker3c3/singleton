@@ -8,14 +8,15 @@ public class SafeLivingRoomButton : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioClip audioPasswordCorrect;
+    public AudioClip audioPasswordWrong;
     public TMP_InputField inputField;
     public GameObject safeDoor;
     public TextMeshProUGUI placeHolder;
-    public string passWordSafeLivingRoom;
     // Start is called before the first frame update
     void Start()
     {
-        passWordSafeLivingRoom = "@@@@";
+
     }
 
     // Update is called once per frame
@@ -89,24 +90,28 @@ public class SafeLivingRoomButton : MonoBehaviour
         audioSource.PlayOneShot(audioClip);
         if (inputField.text.Length > 0)
         {
-            if (inputField.text == passWordSafeLivingRoom)
+            if (inputField.text == GameManager.Instance.passwordSafeLivingRoom)
             {
                 if(!safeDoor)
                 {
                     safeDoor = GameObject.Find("Safe Door Living Room");
                 }
                 safeDoor.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                placeHolder.text = "암호가 일치합니다.";
+                GameManager.Instance.LivingRoomSafeDoorOpen = true;
+                placeHolder.text = "암호가 일치합니다!";
                 inputField.text = "";
+                audioSource.PlayOneShot(audioPasswordCorrect);
             }
             else
             {
+                audioSource.PlayOneShot(audioPasswordWrong);
                 placeHolder.text = "잘못된 암호입니다.";
                 inputField.text = "";
             }
         }
         else
         {
+            audioSource.PlayOneShot(audioPasswordWrong);
             placeHolder.text = "한 자 이상 입력";
         }
     }

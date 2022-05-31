@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Linq;
+
+[System.Serializable]
+public class SaveData {
+    public List<DbFormat> testData = new List<DbFormat>();
+}
 
 public class DBManager : MonoBehaviour
 {
+    string path;
     private static DBManager instance;
     public static DBManager Instance { get => instance; }
-    private List<DbFormat> dataBase;
+    public List<DbFormat> dataBase = new List<DbFormat>();
     public List<DbFormat> DataBase { get => dataBase; }
     private void Awake()
     {
@@ -23,30 +31,79 @@ public class DBManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        path = Path.Combine(Application.persistentDataPath, "database.json");
+        JsonLoad();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void setDbTest()
+    public void JsonLoad()
     {
-        dataBase = new List<DbFormat>();
-        DbFormat user1 = new DbFormat("김영인", 1000);
-        DbFormat user2 = new DbFormat("이우형", 2000);
-        DbFormat user3 = new DbFormat("임규형", 3000);
-        DbFormat user4 = new DbFormat("백승연", 4000);
-        DbFormat user5 = new DbFormat("홍길동", 5000);
+        SaveData saveData = new SaveData();
 
-        dataBase.Add(user1);
-        dataBase.Add(user2);
-        dataBase.Add(user3);
-        dataBase.Add(user4);
-        dataBase.Add(user5);
+        if (!File.Exists(path))
+        {
+            JsonSave();
+        }
+        else
+        {
+            string loadJson = File.ReadAllText(path);
+            saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
+            if (saveData != null)
+            {
+                for (int i = 0; i < saveData.testData.Count; i++)
+                {
+                    dataBase.Add(saveData.testData[i]);
+                }
+                List<DbFormat> sortDataBase = dataBase.OrderBy(x => x.rankingScore).ToList();
+
+                for (int i = 0; i < sortDataBase.Count; i++)
+                {
+                    dataBase[i] = sortDataBase[i];
+                }
+
+            }
+        }
+    }
+
+    public void JsonSave()
+    {
+        SaveData saveData = new SaveData();
+
+        for (int i = 0; i<dataBase.Count; i++)
+        {
+            saveData.testData.Add(dataBase[i]);
+            Debug.Log(saveData.testData[i].rankingScore);
+            Debug.Log(saveData.testData[i].userName);
+            Debug.Log(dataBase[i].userName);
+            Debug.Log(dataBase[i].rankingScore);
+        }
+        string json = JsonUtility.ToJson(saveData, true);
+        Debug.Log(json);
+        Debug.Log(path);
+
+        File.WriteAllText(path, json);
+    }
+
+    public void SetDatabaseAdd(string userName, int score)
+    {
+        // DbFormat user1 = new DbFormat("김영인", 1000);
+        // DbFormat user2 = new DbFormat("이우형", 2000);
+        // DbFormat user3 = new DbFormat("임규형", 3000);
+        // DbFormat user4 = new DbFormat("백승연", 4000);
+        // DbFormat user5 = new DbFormat("홍길동", 5000);
+        // dataBase.Add(user1);
+        // dataBase.Add(user2);
+        // dataBase.Add(user3);
+        // dataBase.Add(user4);
+        // dataBase.Add(user5);
+        DbFormat user = new DbFormat(userName, score);
+        dataBase.Add(user);
         ShowDataBaseList(dataBase);
     }
 

@@ -33,7 +33,7 @@ public class RankingBoardRender : MonoBehaviour
         Debug.Log(parent);
         float nowPosY = 0.0f;
         int count = 1;
-        DBManager.Instance.setDbTest();
+        // DBManager.Instance.setDbTest();
 
         foreach (DbFormat db in DBManager.Instance.DataBase)
         {

@@ -11,6 +11,9 @@ public class FindAttachObjectTowel : MonoBehaviour
     public GameObject canvas;
     public bool flag = false;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class FindAttachObjectTowel : MonoBehaviour
             {
                 if (findObject.name == args.interactable.gameObject.name)
                 {
+                    audioSource.PlayOneShot(audioClip);
                     UiManager.Instance.ChangeFlagIsFirstAttachTowel();
                     if(UiManager.Instance.isFirstAttachTowel && !flag)
                     {

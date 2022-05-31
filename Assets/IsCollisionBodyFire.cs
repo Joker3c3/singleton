@@ -25,16 +25,20 @@ public class IsCollisionBodyFire : MonoBehaviour
             Debug.Log(other.name);
             if (other.tag == "fire" || other.tag == "smoke")
             {
+                GameManager.Instance.isGameEnd = true;
                 GameManager.Instance.DamagedByFire();
             }
             else if (other.tag == "potal")
             {
                 GameManager.Instance.ChangeCameraPosition();
                 UiManager.Instance.UiSetActiveTrue(UiManager.Instance.lifeCanvas);
+                UiManager.Instance.UiSetActiveFalse(UiManager.Instance.lifeCanvas.transform.GetChild(1).gameObject);
+                GameManager.Instance.TimerStart();
             }
             else if (other.tag == "exit")
             {
-                
+                GameManager.Instance.isGameEnd = true;
+                GameManager.Instance.HandleGameEndComplete();
             }
             else
             {

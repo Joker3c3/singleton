@@ -9,6 +9,11 @@ public class IsWetTowelAttachCamera : MonoBehaviour
     public bool flag1 = false;
     public bool flag2 = false;
 
+    public AudioSource audioSourceWashstand;
+    public AudioSource audioSourceTowel;
+    public AudioClip audioWaterFlow;
+    public AudioClip audioCorrect;
+
     void Start()
     {
         if(!canvas)
@@ -35,6 +40,7 @@ public class IsWetTowelAttachCamera : MonoBehaviour
                 UiManager.Instance.ChangeFlagIsCollisionTowelWashstand();
                 if(UiManager.Instance.isCollisionTowelWashstand && !flag1)
                 {
+                    audioSourceWashstand.PlayOneShot(audioWaterFlow);
                     UiManager.Instance.UiSetActiveTrue(canvas);
                     flag1 = true;                  
                 }
@@ -52,6 +58,7 @@ public class IsWetTowelAttachCamera : MonoBehaviour
                 UiManager.Instance.ChangeFlagIsCollisionTowelBody();
                 if(UiManager.Instance.isCollisionTowelBody && !flag2)
                 {
+                    audioSourceTowel.PlayOneShot(audioCorrect);
                     UiManager.Instance.UiSetActiveTrue(canvasBody);
                     flag2 = true;
                 }
