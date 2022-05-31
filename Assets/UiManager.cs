@@ -394,8 +394,8 @@ public class UiManager : MonoBehaviour
     }
     public IEnumerator UiUserNameInputEndButtonPush()
     {
-        yield return new WaitForSeconds(0.5f);
         Debug.Log(inputUserName.text);
+        yield return new WaitForSeconds(0.5f);
         if(inputUserName.text.Length > 0)
         {
             Debug.Log(inputUserName.text);
@@ -565,6 +565,7 @@ public class UiManager : MonoBehaviour
     public IEnumerator UiLaptopCanvasFolderButtonMyPcPush()
     {
         yield return new WaitForSeconds(0.5f);
+        laptopAudioSource.PlayOneShot(audioError);
         UiSetActiveFalse(laptopCanvas.transform.GetChild(1).gameObject);
         UiSetActiveTrue(laptopCanvas.transform.GetChild(6).gameObject);
         UiSetActiveFalse(laptopKeyBoard.transform.GetChild(1).gameObject);
@@ -579,7 +580,6 @@ public class UiManager : MonoBehaviour
     public IEnumerator TriggerSeventhEnter()
     {
         yield return new WaitForSeconds(0.5f);
-        laptopAudioSource.PlayOneShot(audioError);
         UiSetActiveFalse(laptopCanvas.transform.GetChild(6).gameObject);
         UiSetActiveTrue(laptopCanvas.transform.GetChild(1).gameObject);
         UiSetActiveFalse(laptopKeyBoard.transform.GetChild(6).gameObject);

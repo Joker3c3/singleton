@@ -53,20 +53,27 @@ public class DBManager : MonoBehaviour
         {
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
+            List<DbFormat> sortDataBase = new List<DbFormat>();
 
             if (saveData != null)
             {
-                for (int i = 0; i < saveData.testData.Count; i++)
+                if (saveData.testData.Count <= 5)
                 {
-                    dataBase.Add(saveData.testData[i]);
+                    sortDataBase = saveData.testData.OrderBy(x => x.rankingScore).ToList();
+                    for (int i = 0; i < saveData.testData.Count; i++)
+                    {
+                        dataBase.Add(sortDataBase[i]);
+                    }
+                    sortDataBase = dataBase.OrderBy(x => x.rankingScore).ToList();
                 }
-                List<DbFormat> sortDataBase = dataBase.OrderBy(x => x.rankingScore).ToList();
-
-                for (int i = 0; i < sortDataBase.Count; i++)
+                else
                 {
-                    dataBase[i] = sortDataBase[i];
+                    sortDataBase = saveData.testData.OrderBy(x => x.rankingScore).ToList();
+                    for (int i = 0; i < 5; i++)
+                    {
+                        dataBase.Add(sortDataBase[i]);
+                    }
                 }
-
             }
         }
     }
@@ -78,14 +85,8 @@ public class DBManager : MonoBehaviour
         for (int i = 0; i<dataBase.Count; i++)
         {
             saveData.testData.Add(dataBase[i]);
-            Debug.Log(saveData.testData[i].rankingScore);
-            Debug.Log(saveData.testData[i].userName);
-            Debug.Log(dataBase[i].userName);
-            Debug.Log(dataBase[i].rankingScore);
         }
         string json = JsonUtility.ToJson(saveData, true);
-        Debug.Log(json);
-        Debug.Log(path);
 
         File.WriteAllText(path, json);
     }
