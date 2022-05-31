@@ -147,47 +147,48 @@ public class GameManager : MonoBehaviour
         Debug.Log(mode);
         GameMangerInstanceReset();
         UiManager.Instance.UiMangerInstanceReset();
-
-        
+        DBManager.Instance.DBManagerInstanceReset();
     }
 
     public void GameMangerInstanceReset()
     {
-        isTowelCompleted = false;
-        isLifeEnd = false;
-        isTowelWet = false;
-        isCollisionBodyFire = false;
-        isUserStateOverWhelming = false;
-        firstRoomSafeDoorOpen = false;
-        LivingRoomSafeDoorOpen = false;
-        drawerDoorOpen = false;
-        life = 3;
         firstFullHeart = GameObject.Find("First Full Heart");
         secondFullHeart = GameObject.Find("Second Full Heart");
         thirdFullHeart = GameObject.Find("Third Full Heart");
+        vrRig = GameObject.Find("VR Rig");
+        diary = GameObject.Find("Diary");
+        clothes = GameObject.Find("clothes");
+        potal = GameObject.Find("portal");
         firstHeartAnimation = firstFullHeart.GetComponent<Animator>();
         secondHeartAnimation = secondFullHeart.GetComponent<Animator>();
         thirdHeartAnimation = thirdFullHeart.GetComponent<Animator>();
         firstImage = firstFullHeart.GetComponent<Image>();
         secondImage = secondFullHeart.GetComponent<Image>();
         thirdImage = thirdFullHeart.GetComponent<Image>();
+        firstDoorOpen = false;
+        firstRoomSafeDoorOpen = false;
+        LivingRoomSafeDoorOpen = false;
+        drawerDoorOpen = false;
+        secondDoorOpen = false;
+        fireExtinguisherDoorOpen = false;
+        isTowelCompleted = false;
+        isLifeEnd = false;
+        isTowelWet = false;
+        isCollisionBodyFire = false;
+        isUserStateOverWhelming = false;
+
+        isGameEnd = false;
+        life = 3;
+        userName = "";
         passwordLaptop = "paris";
-        passwordLaptopFolder = 1874358;
         passwordSafe = "210305";
         passwordSafeLivingRoom = "●■♣★";
         passwordFireExtinguisher = "FIRE";
-        diary = GameObject.Find("Diary");
-        clothes = GameObject.Find("clothes");
-        potal = GameObject.Find("portal");
+        passwordLaptopFolder = 1784358;
+        rankingScore = 0;
         countInFire = 3;
         timer = 0;
         timerCoroutine = Timer();
-        isGameEnd = false;
-
-        //test
-        userName = "young2";
-        rankingScore = 20000;
-        //test end
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
         GameObjectSetActiveFalse(potal);
@@ -315,11 +316,6 @@ public class GameManager : MonoBehaviour
             Debug.Log(position);
             Debug.Log(vrRig.transform.position);
         }
-    }
-
-    public void CheckLaptopPassword()
-    {
-
     }
 
     private void OnApplicationQuit()

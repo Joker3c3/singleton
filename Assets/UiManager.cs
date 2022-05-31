@@ -104,7 +104,7 @@ public class UiManager : MonoBehaviour
     {
         this.isFirstAttachTowel = false;
     }
-    
+
     public void UiMangerInstanceReset()
     {
         isFirstAttachTowel = false;
@@ -113,44 +113,32 @@ public class UiManager : MonoBehaviour
         isCorutineEnd = false;
         goToMenuButton = GameObject.Find("Go To Menu Button");
         endText = GameObject.Find("End Text");
-        goToMenuButton = GameObject.Find("Go To Menu Button");
-        endText = GameObject.Find("End Text");
         lifeCanvas = GameObject.Find("Life Canvas");
         startMapCanvas = GameObject.Find("Start Map Canvas");
         gameDescriptionCanvas = GameObject.Find("Game Description Canvas");
         rankingBoardCanvas = GameObject.Find("Ranking Board Canvas");
         audioSettingCanvas = GameObject.Find("Audio Setting Canvas");
         userNameCanvas = GameObject.Find("User Name Canvas");
+        laptopCanvas = GameObject.Find("Laptop Canvas");
         rankingBoardPrefab = GameObject.Find("ranking_board_panel_prefab");
         rankingBoardParent = rankingBoardCanvas.transform.GetChild(0).gameObject;
         keyBoard = GameObject.Find("Keyboard");
+        laptopKeyBoard = GameObject.Find("Laptop Keyboard");
+        diaryCanvas = GameObject.Find("Diary Canvas");
         inputUserName = userNameCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
         safeCanvas = GameObject.Find("Safe Canvas");
-        safeInputField = safeCanvas.transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>();
-        laptopKeyBoard = GameObject.Find("Laptop Keyboard");
-        laptopCanvas = GameObject.Find("Laptop Canvas");
-        diaryCanvas = GameObject.Find("Diary Canvas");
         fireExtinguisherCanvas = GameObject.Find("FireExtinguisherCanvas");
-        fireExtinguisherInputField = fireExtinguisherCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
         fireExtinguisherDoor = GameObject.Find("Fire Extinguisher Door");
-
+        safeInputField = safeCanvas.transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>();
+        gameCompleteEndLifeCanvasInputField = lifeCanvas.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+        fireExtinguisherInputField = fireExtinguisherCanvas.transform.GetChild(0).GetChild(1).GetComponent<TMP_InputField>();
         fireExtinguisherCanvasAudioSource = fireExtinguisherCanvas.GetComponent<AudioSource>();
         audioFireExtinguisherPasswordCorrect = GameObject.Find("Audio Correct Password").GetComponent<AudioSource>().clip;
         audioFireExtinguisherPasswordWrong = GameObject.Find("Audio Wrong Password").GetComponent<AudioSource>().clip;
         audioError = GameObject.Find("Audio Error").GetComponent<AudioSource>().clip;
         audioWindowBoot = GameObject.Find("Audio Window Boot").GetComponent<AudioSource>().clip;
 
-        if(!lifeCanvas)
-        {
-            lifeCanvas = GameObject.Find("Life Canvas");
-            Debug.Log(lifeCanvas);
-            UiSetActiveFalse(lifeCanvas);
-        }
-        else 
-        {
-            UiSetActiveFalse(lifeCanvas);
-        }
-        
+        UiSetActiveFalse(lifeCanvas);        
         UiSetActiveFalse(gameDescriptionCanvas);
         UiSetActiveFalse(rankingBoardCanvas);
         UiSetActiveFalse(audioSettingCanvas);
@@ -208,15 +196,16 @@ public class UiManager : MonoBehaviour
     public void UiGameEnd()
     {
         goToMenuButton = GameObject.Find("Go To Menu Button");
-        GameObject text = GameObject.Find("Text (TMP)");
+        GameObject text = GameObject.Find("Go To Menu Button Text");
         endText = GameObject.Find("End Text");
-        Debug.Log(goToMenuButton);
 
         Image image = goToMenuButton.GetComponent<Image>();
         Button button = goToMenuButton.GetComponent<Button>();
         TextMeshProUGUI textMesh = text.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI endTextMesh = endText.GetComponent<TextMeshProUGUI>();
+        Image panelImage = lifeCanvas.transform.GetChild(0).GetComponent<Image>();
 
+        panelImage.color = new Color32(0, 0, 0, 180);
         image.enabled = true;
         button.enabled = true;
         textMesh.enabled = true;
@@ -669,9 +658,9 @@ public class UiManager : MonoBehaviour
     {
         lifeCanvas.transform.GetChild(1).gameObject.SetActive(true);
 
-        string s = GameManager.Instance.timer.ToString();
-        gameCompleteEndLifeCanvasInputField.text = s + "초 입니다.";
-
+        int n = GameManager.Instance.timer;
+        int addOneSeconds = n + 1;
+        gameCompleteEndLifeCanvasInputField.text = addOneSeconds.ToString() + "초 입니다.";
     }
 
     public void UiGameEndCompleteButtonPush()
@@ -679,12 +668,13 @@ public class UiManager : MonoBehaviour
         DBManager.Instance.SetDatabaseAdd(GameManager.Instance.userName, GameManager.Instance.timer);
         //마지막 랭킹보드 등록 눌렸을 때 DB저장
         DBManager.Instance.JsonSave();
-        // GameManager.Instance.ReloadScene();
+        StopAllCoroutines();
+        GameManager.Instance.ReloadScene();
     }
 
-    public void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
-        DBManager.Instance.JsonSave();
+
     }
 
 

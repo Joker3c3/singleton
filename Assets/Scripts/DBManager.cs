@@ -31,14 +31,20 @@ public class DBManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = Path.Combine(Application.persistentDataPath, "database.json");
-        JsonLoad();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void DBManagerInstanceReset()
+    {
+        dataBase = new List<DbFormat>();
+        path = Path.Combine(Application.persistentDataPath, "database.json");
+        JsonLoad();
     }
 
     public void JsonLoad()
@@ -93,16 +99,6 @@ public class DBManager : MonoBehaviour
 
     public void SetDatabaseAdd(string userName, int score)
     {
-        // DbFormat user1 = new DbFormat("김영인", 1000);
-        // DbFormat user2 = new DbFormat("이우형", 2000);
-        // DbFormat user3 = new DbFormat("임규형", 3000);
-        // DbFormat user4 = new DbFormat("백승연", 4000);
-        // DbFormat user5 = new DbFormat("홍길동", 5000);
-        // dataBase.Add(user1);
-        // dataBase.Add(user2);
-        // dataBase.Add(user3);
-        // dataBase.Add(user4);
-        // dataBase.Add(user5);
         DbFormat user = new DbFormat(userName, score);
         dataBase.Add(user);
         ShowDataBaseList(dataBase);
