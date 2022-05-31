@@ -6,17 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class IsCollisionBodyFire : MonoBehaviour
 {
-        // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public AudioSource audioSource;
+    public AudioClip audioPotalEnter;
+    public AudioSource startBGM;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -26,6 +18,7 @@ public class IsCollisionBodyFire : MonoBehaviour
             if (other.tag == "fire" || other.tag == "smoke")
             {
                 GameManager.Instance.isGameEnd = true;
+                Debug.Log("this is " + other.tag);
                 GameManager.Instance.DamagedByFire();
             }
             else if (other.tag == "potal")
@@ -34,6 +27,9 @@ public class IsCollisionBodyFire : MonoBehaviour
                 UiManager.Instance.UiSetActiveTrue(UiManager.Instance.lifeCanvas);
                 UiManager.Instance.UiSetActiveFalse(UiManager.Instance.lifeCanvas.transform.GetChild(1).gameObject);
                 GameManager.Instance.TimerStart();
+                audioSource.PlayOneShot(audioPotalEnter);
+                startBGM.mute = true;
+
             }
             else if (other.tag == "exit")
             {

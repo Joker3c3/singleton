@@ -52,7 +52,7 @@ public class IsWetTowelAttachCamera : MonoBehaviour
                 Debug.Log("Is not standwash..");
             }
 
-            if(other.tag == "body" && GameManager.Instance.isTowelWet == true)
+            if(other.tag == "MainCamera" && GameManager.Instance.isTowelWet == true)
             {
                 GameManager.Instance.ChangeFlagIsTowelCompleted();
                 UiManager.Instance.ChangeFlagIsCollisionTowelBody();
