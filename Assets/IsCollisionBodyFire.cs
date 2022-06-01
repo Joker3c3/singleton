@@ -15,9 +15,8 @@ public class IsCollisionBodyFire : MonoBehaviour
         if (other != null)
         {
             Debug.Log(other.name);
-            if (other.tag == "fire" || other.tag == "smoke")
+            if (other.tag == "fire")
             {
-                GameManager.Instance.isGameEnd = true;
                 Debug.Log("this is " + other.tag);
                 GameManager.Instance.DamagedByFire();
             }
@@ -33,7 +32,7 @@ public class IsCollisionBodyFire : MonoBehaviour
             }
             else if (other.tag == "exit")
             {
-                GameManager.Instance.isGameEnd = true;
+                StopAllCoroutines();
                 GameManager.Instance.HandleGameEndComplete();
             }
             else
@@ -44,6 +43,34 @@ public class IsCollisionBodyFire : MonoBehaviour
         else
         {
             Debug.Log("Collider parameter missing");
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if(other != null)
+        {
+            if(other.CompareTag("smoke"))
+            {
+                GameManager.Instance.frame = GameManager.Instance.frame + Time.deltaTime;
+                if(GameManager.Instance.frame > 1.0f)
+                {
+                    GameManager.Instance.DamagedByFire();
+                    GameManager.Instance.frame = Time.deltaTime;
+                }
+            }
+        }
+        else
+        {
+           Debug.Log("Collider parameter missing"); 
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("smoke"))
+        {
+            GameManager.Instance.frame = Time.deltaTime;
         }
     }
 }

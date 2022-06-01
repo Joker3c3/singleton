@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     public bool isTowelWet = false;
     public bool isCollisionBodyFire = false;
     public bool isUserStateOverWhelming = false;
-    public bool isGameEnd = false;
     private int life;
     public string userName;
     public string passwordLaptop;
@@ -44,6 +43,11 @@ public class GameManager : MonoBehaviour
     public int countInFire;
     public int timer;
     public IEnumerator timerCoroutine;
+    public float frame;
+    public AudioSource audioSourceCamera;
+    public AudioClip audioClipAttacked;
+    public AudioSource audioSourceGameOver;
+    public AudioSource audioSourceGameCompleteEnd;
 
     private void Awake()
     {
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Timer()
     {
-        while(!isGameEnd)
+        while(true)
         {
             yield return new WaitForSecondsRealtime(1.0f);
             timer++;
@@ -177,7 +181,6 @@ public class GameManager : MonoBehaviour
         isCollisionBodyFire = false;
         isUserStateOverWhelming = false;
 
-        isGameEnd = false;
         life = 3;
         userName = "";
         passwordLaptop = "paris";
@@ -189,9 +192,17 @@ public class GameManager : MonoBehaviour
         countInFire = 3;
         timer = 0;
         timerCoroutine = Timer();
+        frame = Time.deltaTime;
+        audioSourceCamera = GameObject.Find("VR Rig").transform.GetChild(0).GetChild(0).GetComponent<AudioSource>();
+        audioClipAttacked = audioSourceCamera.GetComponent<AudioSource>().clip;
+        audioSourceGameOver = vrRig.transform.GetChild(0).GetChild(7).GetComponent<AudioSource>();
+        audioSourceGameCompleteEnd = vrRig.transform.GetChild(0).GetChild(8).GetComponent<AudioSource>();
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
         GameObjectSetActiveFalse(potal);
+        
+        audioSourceGameCompleteEnd.mute = true;
+        audioSourceGameCompleteEnd.mute = true;
     }
 
     public void GameObjectSetActiveFalse(GameObject target)
@@ -216,14 +227,17 @@ public class GameManager : MonoBehaviour
         {
             if (life == 1)
             {
+                audioSourceCamera.PlayOneShot(audioClipAttacked);
                 DamageFirstHeart();
             }
             else if (life == 2)
             {
+                audioSourceCamera.PlayOneShot(audioClipAttacked);
                 DamageSecondHeart();
             }
             else if (life == 3)
             {
+                audioSourceCamera.PlayOneShot(audioClipAttacked);
                 DamageThirdHeart();
             }
         }
@@ -269,14 +283,20 @@ public class GameManager : MonoBehaviour
         //create reset your game
 
         Debug.Log("IsCourtinEnd = " + UiManager.Instance.isCorutineEnd);
-
         StartCoroutine(UiGameEndCoroutine());
-        UiManager.Instance.goToMenuButton.GetComponent<Button>().onClick.AddListener(() => ReloadScene());
+        UiManager.Instance.goToMenuButton.GetComponent<Button>().onClick.AddListener(() => WrapperGameOver());
 
+    }
+
+    public void WrapperGameOver()
+    {
+        audioSourceGameOver.mute = true;
+        ReloadScene();
     }
 
     public void HandleGameEndComplete()
     {
+        audioSourceGameCompleteEnd.mute = false;
         UiManager.Instance.UiGameEndComplete();
         DisableMainCamera();
     }
@@ -290,6 +310,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         UiManager.Instance.UiGameEnd();
+        audioSourceGameOver.mute = false;
         DisableMainCamera();
     }
 

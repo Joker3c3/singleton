@@ -31,9 +31,9 @@ TagManager:
   - Body
   - Grab ignore Ray
   - Smoke Area
-  - 
-  - 
-  - 
+  - Door
+  - Object In Door
+  - Lock
   - 
   - 
   - 

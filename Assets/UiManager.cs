@@ -657,18 +657,15 @@ public class UiManager : MonoBehaviour
     public void UiGameEndComplete()
     {
         lifeCanvas.transform.GetChild(1).gameObject.SetActive(true);
-
-        int n = GameManager.Instance.timer;
-        int addOneSeconds = n + 1;
-        gameCompleteEndLifeCanvasInputField.text = addOneSeconds.ToString() + "초 입니다.";
+        gameCompleteEndLifeCanvasInputField.text = GameManager.Instance.timer.ToString() + "초 입니다.";
     }
 
     public void UiGameEndCompleteButtonPush()
     {
+        GameManager.Instance.audioSourceGameCompleteEnd.mute = true;
         DBManager.Instance.SetDatabaseAdd(GameManager.Instance.userName, GameManager.Instance.timer);
         //마지막 랭킹보드 등록 눌렸을 때 DB저장
         DBManager.Instance.JsonSave();
-        StopAllCoroutines();
         GameManager.Instance.ReloadScene();
     }
 
