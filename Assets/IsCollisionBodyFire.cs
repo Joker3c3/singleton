@@ -61,7 +61,7 @@ public class IsCollisionBodyFire : MonoBehaviour
             if(other.CompareTag("smoke"))
             {
                 GameManager.Instance.frame = GameManager.Instance.frame + Time.deltaTime;
-                if(GameManager.Instance.frame > 1.0f)
+                if(GameManager.Instance.frame > 3.0f)
                 {
                     GameManager.Instance.DamagedByFire();
                     GameManager.Instance.frame = Time.deltaTime;

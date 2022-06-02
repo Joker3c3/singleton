@@ -6,12 +6,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class InGrabDropObject : MonoBehaviour
 {
     public GameObject studentIdCard;
-    public GameObject IdCard;
     // Start is called before the first frame update
     void Start()
     {
         studentIdCard.gameObject.SetActive(false);
-        IdCard.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,15 +25,16 @@ public class InGrabDropObject : MonoBehaviour
             studentIdCard = GameObject.Find("studentTextured");
         }
 
-        if(!IdCard)
-        {
-            IdCard = GameObject.Find("idTextured");
-        }
-
         if(args.interactable.gameObject.name == "shirt (3)")
         {
-            studentIdCard.SetActive(true);
-            IdCard.SetActive(true);
+            StartCoroutine(CoroutineStudentIdCard());
         }
+    }
+
+    public IEnumerator CoroutineStudentIdCard()
+    {
+        yield return new WaitForSeconds(0.5f);
+        studentIdCard.SetActive(true);
+        yield break;
     }
 }

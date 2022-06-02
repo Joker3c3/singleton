@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.XR.CoreUtils;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class GameManager : MonoBehaviour
     public GameObject diary;
     public GameObject clothes;
     public GameObject potal;
+    public GameObject gameStartPoint;
+    public GameObject teleportationLivingRoomFloor;
+    public GameObject teleportationToiletFloor;
     public Animator firstHeartAnimation;
     public Animator secondHeartAnimation;
     public Animator thirdHeartAnimation;
@@ -151,6 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void GameMangerInstanceReset()
     {
+        gameStartPoint = GameObject.Find("Game Start Point");
         firstFullHeart = GameObject.Find("First Full Heart");
         secondFullHeart = GameObject.Find("Second Full Heart");
         thirdFullHeart = GameObject.Find("Third Full Heart");
@@ -158,6 +164,8 @@ public class GameManager : MonoBehaviour
         diary = GameObject.Find("Diary");
         clothes = GameObject.Find("clothes");
         potal = GameObject.Find("portal");
+        teleportationToiletFloor = GameObject.Find("toiletFloor");
+        teleportationLivingRoomFloor = GameObject.Find("pasted__pasted__pPlane1");
         firstHeartAnimation = firstFullHeart.GetComponent<Animator>();
         secondHeartAnimation = secondFullHeart.GetComponent<Animator>();
         thirdHeartAnimation = thirdFullHeart.GetComponent<Animator>();
@@ -191,12 +199,16 @@ public class GameManager : MonoBehaviour
         audioClipAttacked = audioSourceCamera.GetComponent<AudioSource>().clip;
         audioSourceGameOver = vrRig.transform.GetChild(0).GetChild(7).GetComponent<AudioSource>();
         audioSourceGameCompleteEnd = vrRig.transform.GetChild(0).GetChild(8).GetComponent<AudioSource>();
+        vrRig.GetComponent<Transform>().position = new Vector3(-67.5500031f, 1f, 0.5f);
 
         GameObjectSetActiveFalse(diary.transform.GetChild(1).gameObject);
         GameObjectSetActiveFalse(potal);
         
         audioSourceGameOver.mute = true;
         audioSourceGameCompleteEnd.mute = true;
+
+        teleportationLivingRoomFloor.GetComponent<TeleportationArea>().enabled = false;
+        teleportationToiletFloor.GetComponent<TeleportationArea>().enabled = false;
     }
 
     public void GameObjectSetActiveFalse(GameObject target)

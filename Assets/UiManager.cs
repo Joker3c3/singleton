@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
     public bool isCollisionTowelWashstand = false;
     public bool isCollisionTowelBody = false;
     public bool isCorutineEnd = false;
+    public bool isKeyAttachHandleFirst = false;
 
     public GameObject goToMenuButton;
     public GameObject endText;
@@ -30,6 +31,7 @@ public class UiManager : MonoBehaviour
     public GameObject safeCanvas;
     public GameObject fireExtinguisherCanvas;
     public GameObject fireExtinguisherDoor;
+    public GameObject smokeWarningCanvas;
 
     public TMP_InputField inputUserName;
     public TMP_InputField fireExtinguisherInputField;
@@ -111,6 +113,7 @@ public class UiManager : MonoBehaviour
         isCollisionTowelWashstand = false;
         isCollisionTowelBody = false;
         isCorutineEnd = false;
+        isKeyAttachHandleFirst = false;
         goToMenuButton = GameObject.Find("Go To Menu Button");
         endText = GameObject.Find("End Text");
         lifeCanvas = GameObject.Find("Life Canvas");
@@ -138,6 +141,7 @@ public class UiManager : MonoBehaviour
         audioError = GameObject.Find("Audio Error").GetComponent<AudioSource>().clip;
         audioWindowBoot = GameObject.Find("Audio Window Boot").GetComponent<AudioSource>().clip;
 
+        smokeWarningCanvas = GameObject.Find("Smoke Warning Canvas");
         UiSetActiveFalse(lifeCanvas);        
         UiSetActiveFalse(gameDescriptionCanvas);
         UiSetActiveFalse(rankingBoardCanvas);
@@ -146,9 +150,10 @@ public class UiManager : MonoBehaviour
         UiSetActiveFalse(keyBoard);
         UiSetActiveFalse(diaryCanvas);
         UiSetActiveFalse(fireExtinguisherCanvas);
+        UiSetActiveFalse(smokeWarningCanvas);
 
         //reset laptopCanvas
-        for(int i = 1; i<=6; i++)
+        for (int i = 1; i<=6; i++)
         {
             UiSetActiveFalse(laptopCanvas.transform.GetChild(i).gameObject);
         }

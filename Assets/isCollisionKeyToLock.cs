@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class isCollisionKeyToLock : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class isCollisionKeyToLock : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
             GameManager.Instance.firstDoorOpen = true;
             doorRigidbody.constraints = RigidbodyConstraints.None;
+            if (!UiManager.Instance.isKeyAttachHandleFirst)
+            {
+                UiManager.Instance.smokeWarningCanvas.SetActive(true);
+                UiManager.Instance.isKeyAttachHandleFirst = true;
+            }
+            GameManager.Instance.teleportationLivingRoomFloor.GetComponent<TeleportationArea>().enabled = true;
+            GameManager.Instance.teleportationToiletFloor.GetComponent<TeleportationArea>().enabled = true;
         }
     }
 }
